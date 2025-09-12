@@ -6,7 +6,7 @@
         <div class="mb-8">
           <div class="flex items-center justify-center space-x-3 mb-4">
             <div class="w-10 h-10 rounded-lg overflow-hidden">
-              <img src="/src/assets/images/superjellycat.png" alt="SuperJellyCat Logo" class="w-full h-full object-cover">
+              <img src="/images/superjellycat.png" alt="SuperJellyCat Logo" class="w-full h-full object-cover">
             </div>
             <div>
               <h3 class="text-xl font-display font-bold gradient-text">SuperJellyCat</h3>

@@ -5,7 +5,7 @@
       <!-- 游戏Banner背景 -->
       <div class="absolute inset-0">
         <img 
-          src="/src/assets/images/games/littleswordmaster/banner-1920x1080.png" 
+          src="/images/games/littleswordmaster/banner-1920x1080.png" 
           alt="小小御剑士游戏背景" 
           class="w-full h-full object-cover"
         >
@@ -40,7 +40,7 @@
               <div class="flex items-center justify-center lg:justify-start space-x-4">
                 <div class="w-16 h-16 rounded-xl overflow-hidden">
                   <img 
-                    src="/src/assets/images/games/littleswordmaster/logo-512.png" 
+                    src="/images/games/littleswordmaster/logo-512.png" 
                     alt="小小御剑士logo" 
                     class="w-full h-full object-cover"
                   >
@@ -51,13 +51,13 @@
                 </div>
               </div>
               
-              <div class="flex items-center gap-3">
-                <div class="inline-block bg-jelly-500/20 backdrop-blur-sm px-4 py-2 rounded-full border border-jelly-500/30">
-                  <span class="text-jelly-300 font-medium">现已发布</span>
+              <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                <div class="inline-block bg-jelly-500/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-jelly-500/30">
+                  <span class="text-jelly-300 font-medium text-sm">现已发布</span>
                 </div>
                 
                 <!-- 多平台发布标签 -->
-                <div class="flex gap-2">
+                <div class="flex gap-2 flex-wrap">
                   <a href="https://www.taptap.cn/app/766679?os=android" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
                     <span class="text-xs">TapTap</span>
                   </a>

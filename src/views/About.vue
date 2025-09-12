@@ -13,7 +13,7 @@
             <div class="text-center mb-8">
               <div class="w-32 h-32 rounded-full overflow-hidden mx-auto mb-6 border-4 border-jelly-500/30">
                 <img 
-                  src="/src/assets/images/Avatar.jpg" 
+                  src="/images/Avatar.jpg" 
                   alt="SuperJellyCat 开发者头像" 
                   class="w-full h-full object-cover"
                 >

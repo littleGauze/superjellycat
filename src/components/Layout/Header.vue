@@ -5,7 +5,7 @@
         <!-- Logo -->
         <RouterLink to="/" class="flex items-center space-x-3 group">
           <div class="w-10 h-10 rounded-lg overflow-hidden group-hover:scale-110 transition-transform duration-300">
-            <img src="/src/assets/images/superjellycat.png" alt="SuperJellyCat Logo" class="w-full h-full object-cover">
+            <img src="/images/superjellycat.png" alt="SuperJellyCat Logo" class="w-full h-full object-cover">
           </div>
           <div class="hidden sm:block">
             <h1 class="text-xl font-display font-bold gradient-text">SuperJellyCat</h1>

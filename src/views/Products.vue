@@ -34,7 +34,7 @@
                 <!-- 视频播放按钮 -->
                 <div class="absolute bottom-6 right-6">
                   <button
-                    @click="playVideo('/littleswordmaster/littleswordmaster.mp4')"
+                    @click="playVideo('/video/littleswordmaster.mp4')"
                     class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 group"
                   >
                     <svg
@@ -89,14 +89,14 @@
           <div class="order-1 lg:order-2 space-y-8">
             <!-- 游戏标题 -->
             <div class="space-y-4">
-              <div class="flex items-center gap-4">
-                <div class="inline-block bg-jelly-500/20 px-4 py-2 rounded-full">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
                   <span class="text-jelly-400 font-medium text-sm">最新发布</span>
                 </div>
                 
                 <!-- 多平台下载 -->
                 <div class="flex items-center gap-2">
-                  <div class="flex gap-2">
+                  <div class="flex gap-2 flex-wrap">
                     <a href="https://www.taptap.cn/app/766679?os=android" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
                       <span class="text-xs">TapTap</span>
                     </a>
@@ -155,7 +155,7 @@
               <a href="https://www.taptap.cn/app/766679?os=android" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">
                 立即体验
               </a>
-                <button @click="playVideo('/littleswordmaster/littleswordmaster.mp4')" class="btn-secondary text-lg px-8 py-4">
+                <button @click="playVideo('/video/littleswordmaster.mp4')" class="btn-secondary text-lg px-8 py-4">
                   观看宣传片
                 </button>
             </div>
@@ -225,7 +225,7 @@
                 <a href="https://www.bilibili.com/video/BV1YzagzEEQr/?vd_source=475144602498f2d7de7a1820b128c413" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
                   关注开发进度
                 </a>
-                <button @click="playVideo('/video/littleswordmaster.mp4')" class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
+                <button @click="playVideo('/video/savethefarm.mp4')" class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
                   观看预告片
                 </button>
               </div>
@@ -341,13 +341,13 @@ const closeVideoModal = () => {
 }
 
 const gameImages = [
-  { title: '游戏Banner', image: '/src/assets/images/games/littleswordmaster/banner-1920x1080.png' },
-  { title: '秋季场景', image: '/src/assets/images/games/littleswordmaster/screenshots/autumn_1080x1920.png' },
-  { title: 'Boss战斗', image: '/src/assets/images/games/littleswordmaster/screenshots/boss_fight_1080x1920.png' },
-  { title: '闪电技能', image: '/src/assets/images/games/littleswordmaster/screenshots/lightning_1080x1920.png' },
-  { title: '夏季场景', image: '/src/assets/images/games/littleswordmaster/screenshots/summer_1080x1920.png' },
-  { title: '剑术展示', image: '/src/assets/images/games/littleswordmaster/screenshots/swords-1080x1920.png' },
-  { title: '冬季场景', image: '/src/assets/images/games/littleswordmaster/screenshots/winter_1080x1920.png' }
+  { title: '游戏Banner', image: '/images/games/littleswordmaster/banner-1920x1080.png' },
+  { title: '秋季场景', image: '/images/games/littleswordmaster/screenshots/autumn_1080x1920.png' },
+  { title: 'Boss战斗', image: '/images/games/littleswordmaster/screenshots/boss_fight_1080x1920.png' },
+  { title: '闪电技能', image: '/images/games/littleswordmaster/screenshots/lightning_1080x1920.png' },
+  { title: '夏季场景', image: '/images/games/littleswordmaster/screenshots/summer_1080x1920.png' },
+  { title: '剑术展示', image: '/images/games/littleswordmaster/screenshots/swords-1080x1920.png' },
+  { title: '冬季场景', image: '/images/games/littleswordmaster/screenshots/winter_1080x1920.png' }
 ]
 
 const currentImageIndex = ref(0)
@@ -365,7 +365,7 @@ const upcomingGames = [
     englishTitle: 'Save the Farm',
     description: '在一个原本风和日丽的下午，突然乌云密布一道闪电劈中农场，留下一个神秘的传送门，农场里的动物纷纷被传送门传送到了世界各地，农场没有小动物怎么行呢？作为农场主的你准备带上装备去找回失踪的动物，励志要寻回每一只农场动物，从此踏上了拯救农场和小动物的旅程。',
     status: '开发中',
-    image: '/src/assets/images/games/savethefarm/main.jpg',
+    image: '/images/games/savethefarm/main.jpg',
     video: '/savethefarm/savethefarm.mp4'
   }
 ]

@@ -4,11 +4,14 @@
   "type": "module",
   "description": "果冻猫侠工作室官网",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "build:check": "vue-tsc && vite build",
+    "predev": "node scripts/copy-assets.js",
+    "dev": "npm run predev && vite",
+    "prebuild": "node scripts/copy-assets.js",
+    "build": "npm run prebuild && vite build",
+    "build:check": "npm run prebuild && vue-tsc && vite build",
     "preview": "vite preview",
-    "type-check": "vue-tsc --noEmit"
+    "type-check": "vue-tsc --noEmit",
+    "copy-assets": "node scripts/copy-assets.js"
   },
   "dependencies": {
     "@vueuse/core": "^10.7.0",
