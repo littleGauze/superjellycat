@@ -1,0 +1,290 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+// 自定义SCSS变量
+$primary-color: #dd57ff;
+$secondary-color: #8b5cf6;
+$accent-color: #06b6d4;
+$dark-bg: #111827;
+$card-bg: rgba(31, 41, 55, 0.5);
+
+// 自定义混合器
+@mixin glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@mixin gradient-text {
+  background: linear-gradient(135deg, $primary-color, $accent-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@mixin hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, $dark-bg 0%, rgba(139, 92, 246, 0.2) 50%, $dark-bg 100%);
+    z-index: -2;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(221, 87, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+    z-index: -1;
+  }
+}
+
+// 容器最大宽度
+.container-max {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  
+  @media (min-width: 640px) {
+    padding: 0 1.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: 0 2rem;
+  }
+}
+
+// 页面上下留白
+.page-spacing {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  
+  @media (min-width: 640px) {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  @media (min-width: 1024px) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+// 章节间距
+.section-spacing {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  
+  @media (min-width: 640px) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  @media (min-width: 1024px) {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+// 自定义组件样式
+.hero-section {
+  @include hero-section;
+}
+
+.glass-card {
+  @include glass-effect;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(221, 87, 255, 0.2);
+  }
+}
+
+.gradient-text {
+  @include gradient-text;
+}
+
+// 动画关键帧
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 20px rgba(221, 87, 255, 0.5); }
+  100% { box-shadow: 0 0 30px rgba(221, 87, 255, 0.8); }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(100px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+// 动画类
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+// 按钮样式
+.btn-primary {
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  transform: scale(1);
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(221, 87, 255, 0.3);
+  }
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid $primary-color;
+  color: $primary-color;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: $primary-color;
+    color: white;
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 80vh;
+    padding: 2rem 1rem;
+  }
+  
+  .glass-card {
+    padding: 1rem;
+  }
+}
+
+// 网格背景效果
+.grid-background {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+// Hide scrollbar but keep functionality
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+  
+  &::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+  }
+}
+
+// 平台按钮样式
+.platform-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: white;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  .platform-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  span {
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+  }
+  
+  &:hover .platform-icon {
+    transform: scale(1.1);
+  }
+}
+
+// 迷你平台按钮样式
+.platform-mini-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    opacity: 0.9;
+  }
+  
+  span {
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+}
