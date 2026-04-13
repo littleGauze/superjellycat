@@ -105,7 +105,7 @@ const values = [
 
 const stats = [
   { value: '1+', label: '年经验' },
-  { value: '2', label: '游戏项目' },
+  { value: '3', label: '游戏项目' },
   { value: '1', label: '独立开发者' },
   { value: '∞', label: '创作热情' }
 ]

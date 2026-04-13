@@ -1,6 +1,6 @@
 <template>
   <div class="grid-background">
-    <!-- Hero Section - 参考米哈游设计 -->
+    <!-- 异界钓鱼佬展示 -->
     <section class="hero-section">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -11,9 +11,9 @@
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-800/50">
                   <img
-                    :src="currentImage.image"
-                    :alt="currentImage.title"
-                    class="w-full h-full object-contain transition-all duration-500"
+                    :src="currentAnglerImage.image"
+                    :alt="currentAnglerImage.title"
+                    class="w-full h-full object-cover transition-all duration-500"
                   >
                   <!-- 遮罩层 -->
                   <div class="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent"></div>
@@ -27,41 +27,26 @@
 
                   <!-- 图片标题 -->
                   <div class="absolute bottom-4 left-4 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
-                    <p class="text-white text-sm font-medium">{{ currentImage.title }}</p>
+                    <p class="text-white text-sm font-medium">{{ currentAnglerImage.title }}</p>
                   </div>
                 </div>
 
-                <!-- 视频播放按钮 -->
-                <div class="absolute bottom-6 right-6">
-                  <button
-                    @click="playVideo('/video/littleswordmaster.mp4')"
-                    class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 group"
-                  >
-                    <svg
-                      class="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </button>
-                </div>
               </div>
 
               <!-- 缩略图滑动区域 -->
               <div class="relative">
                 <div
                   class="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
-                  ref="thumbnailContainer"
+                  ref="anglerThumbnailContainer"
                 >
                   <div
-                    v-for="(image, index) in gameImages"
+                    v-for="(image, index) in anglerImages"
                     :key="index"
-                    @click="selectImage(index)"
+                    @click="selectAnglerImage(index)"
                     class="flex-shrink-0 cursor-pointer group"
-                    :class="{ 'ring-2 ring-jelly-400': currentImageIndex === index }"
+                    :class="{ 'ring-2 ring-jelly-400': currentAnglerImageIndex === index }"
                   >
-                    <div class="w-16 h-24 rounded-lg overflow-hidden bg-gray-800">
+                    <div class="w-28 h-16 rounded-lg overflow-hidden bg-gray-800">
                       <img
                         :src="image.image"
                         :alt="image.title"
@@ -74,11 +59,11 @@
                 <!-- 滑动指示器 -->
                 <div class="flex justify-center mt-4 space-x-2">
                   <button
-                    v-for="(_, index) in gameImages"
+                    v-for="(_, index) in anglerImages"
                     :key="index"
-                    @click="selectImage(index)"
+                    @click="selectAnglerImage(index)"
                     class="w-2 h-2 rounded-full transition-all duration-300"
-                    :class="currentImageIndex === index ? 'bg-jelly-400 w-6' : 'bg-gray-600'"
+                    :class="currentAnglerImageIndex === index ? 'bg-jelly-400 w-6' : 'bg-gray-600'"
                   ></button>
                 </div>
               </div>
@@ -97,7 +82,7 @@
                 <!-- 多平台下载 -->
                 <div class="flex items-center gap-2">
                   <div class="flex gap-2 flex-wrap">
-                    <a href="https://www.taptap.cn/app/766679?os=android" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
+                    <a href="https://www.taptap.cn/app/802340?os=android" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
                       <span class="text-xs">TapTap</span>
                     </a>
                     <a href="#" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-green-500">
@@ -116,8 +101,104 @@
                 </div>
               </div>
               <h1 class="text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
-                <span class="gradient-text">小小御剑士</span>
+                <span class="gradient-text">异界钓鱼佬</span>
               </h1>
+              <p class="text-xl text-gray-300 font-medium">The Isekai Angler</p>
+            </div>
+
+            <!-- 游戏描述 -->
+            <div class="space-y-4">
+              <p class="text-lg text-gray-300 leading-relaxed">
+                一名无名钓鱼佬误入异界，在四季流转的世界里一边钓鱼、一边战斗。通过收集鱼卡、武器、鱼竿与符文，
+                在章节间休整、商店选择与钓鱼补强中逐步搭建自己的战斗流派。
+              </p>
+
+              <!-- 游戏特色 -->
+              <div class="space-y-3">
+                <div
+                  v-for="item in anglerSystems"
+                  :key="item.title"
+                  class="flex items-center space-x-3"
+                >
+                  <div class="w-2 h-2 bg-jelly-400 rounded-full"></div>
+                  <span class="text-gray-300">{{ item.title }}</span>
+                </div>
+              </div>
+
+              <p class="text-base text-gray-400 leading-relaxed">
+                完成四季章节挑战，击败关底 Boss，成为真正的“异界钓鱼佬”。
+              </p>
+            </div>
+
+            <!-- 操作按钮 -->
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="https://www.taptap.cn/app/802340?os=android" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">
+                立即体验
+              </a>
+              <button type="button" class="btn-secondary text-lg px-8 py-4">
+                观看宣传片
+              </button>
+            </div>
+
+            <!-- 社交链接 -->
+            <div class="flex items-center space-x-6">
+              <a
+                href="https://www.bilibili.com/video/BV1Q2DXBbEvt/?vd_source=475144602498f2d7de7a1820b128c413"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-400 hover:text-jelly-400 transition-colors duration-300 flex items-center space-x-2"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M17.813 4.653c-.08-.1-.2-.15-.3-.15-.1 0-.2.05-.3.15L14.5 7.5c-.1.1-.1.2-.1.3v8c0 .1.05.2.15.3.1.1.2.15.3.15h6c.1 0 .2-.05.3-.15.1-.1.15-.2.15-.3V5c0-.1-.05-.2-.15-.3-.1-.1-.2-.15-.3-.15h-3.5zm-8.5 0c-.1 0-.2.05-.3.15L5.5 7.5c-.1.1-.1.2-.1.3v8c0 .1.05.2.15.3.1.1.2.15.3.15h6c.1 0 .2-.05.3-.15.1-.1.15-.2.15-.3V5c0-.1-.05-.2-.15-.3-.1-.1-.2-.15-.3-.15H9.313z"
+                  />
+                </svg>
+                <span>Bilibili 开发视频合集</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 小小御剑士展示 -->
+    <section class="section-spacing">
+      <div class="container-max">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <!-- 左侧：游戏信息区域 -->
+          <div class="order-1 lg:order-1 space-y-8">
+            <!-- 游戏标题 -->
+            <div class="space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
+                  <span class="text-jelly-400 font-medium text-sm">现已发布</span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a href="https://www.taptap.cn/app/766679?os=android" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
+                    <span class="text-xs">TapTap</span>
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-green-500">
+                    <span class="text-xs">微信</span>
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-red-500">
+                    <span class="text-xs">抖音</span>
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-orange-500">
+                    <span class="text-xs">好游快爆</span>
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-purple-500">
+                    <span class="text-xs">4399</span>
+                  </a>
+                </div>
+              </div>
+              <h2 class="text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
+                <span class="gradient-text">小小御剑士</span>
+              </h2>
               <p class="text-xl text-gray-300 font-medium">Little Sword Master</p>
             </div>
 
@@ -152,12 +233,12 @@
 
             <!-- 操作按钮 -->
             <div class="flex flex-col sm:flex-row gap-4">
-              <a href="https://www.taptap.cn/app/766679?os=android" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">
+              <a href="https://www.taptap.cn/app/766679?os=android" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
                 立即体验
               </a>
-                <button @click="playVideo('/video/littleswordmaster.mp4')" class="btn-secondary text-lg px-8 py-4">
-                  观看宣传片
-                </button>
+              <button @click="playVideo('/video/littleswordmaster.mp4')" class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
+                观看宣传片
+              </button>
             </div>
 
             <!-- 社交链接 -->
@@ -181,102 +262,6 @@
               </a>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- 异界钓鱼佬展示 -->
-    <section class="section-spacing">
-      <div class="container-max">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <!-- 左侧：游戏信息区域 -->
-          <div class="order-1 lg:order-1 space-y-8">
-            <!-- 游戏标题 -->
-            <div class="space-y-4">
-              <div class="flex flex-col sm:flex-row sm:items-center gap-4">
-                <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
-                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
-                </div>
-                <div class="flex gap-2 flex-wrap">
-                  <a href="https://www.taptap.cn/app/802340?os=android" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
-                    <span class="text-xs">TapTap</span>
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-green-500">
-                    <span class="text-xs">微信</span>
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-red-500">
-                    <span class="text-xs">抖音</span>
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-orange-500">
-                    <span class="text-xs">好游快爆</span>
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-purple-500">
-                    <span class="text-xs">4399</span>
-                  </a>
-                </div>
-              </div>
-              <h2 class="text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
-                <span class="gradient-text">异界钓鱼佬</span>
-              </h2>
-              <p class="text-xl text-gray-300 font-medium">The Isekai Angler</p>
-            </div>
-
-            <!-- 游戏描述 -->
-            <div class="space-y-4">
-              <p class="text-lg text-gray-300 leading-relaxed">
-                一名无名钓鱼佬误入异界，在四季流转的世界里一边钓鱼、一边战斗。通过收集鱼卡、武器、鱼竿与符文，
-                在章节间休整、商店选择与钓鱼补强中逐步搭建自己的战斗流派。
-              </p>
-
-              <!-- 游戏特色 -->
-              <div class="space-y-3">
-                <div
-                  v-for="item in anglerSystems"
-                  :key="item.title"
-                  class="flex items-center space-x-3"
-                >
-                  <div class="w-2 h-2 bg-jelly-400 rounded-full"></div>
-                  <span class="text-gray-300">{{ item.title }}</span>
-                </div>
-              </div>
-
-              <p class="text-base text-gray-400 leading-relaxed">
-                完成四季章节挑战，击败关底 Boss，成为真正的“异界钓鱼佬”。
-              </p>
-            </div>
-
-            <!-- 操作按钮 -->
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a href="https://www.taptap.cn/app/802340?os=android" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
-                立即体验
-              </a>
-              <button type="button" class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
-                观看宣传片
-              </button>
-            </div>
-
-            <!-- 社交链接 -->
-            <div class="flex items-center space-x-6">
-              <a
-                href="https://www.bilibili.com/video/BV1Q2DXBbEvt/?vd_source=475144602498f2d7de7a1820b128c413"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-gray-400 hover:text-jelly-400 transition-colors duration-300 flex items-center space-x-2"
-              >
-                <svg
-                  class="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M17.813 4.653c-.08-.1-.2-.15-.3-.15-.1 0-.2.05-.3.15L14.5 7.5c-.1.1-.1.2-.1.3v8c0 .1.05.2.15.3.1.1.2.15.3.15h6c.1 0 .2-.05.3-.15.1-.1.15-.2.15-.3V5c0-.1-.05-.2-.15-.3-.1-.1-.2-.15-.3-.15h-3.5zm-8.5 0c-.1 0-.2.05-.3.15L5.5 7.5c-.1.1-.1.2-.1.3v8c0 .1.05.2.15.3.1.1.2.15.3.15h6c.1 0 .2-.05.3-.15.1-.1.15-.2.15-.3V5c0-.1-.05-.2-.15-.3-.1-.1-.2-.15-.3-.15H9.313z"
-                  />
-                </svg>
-                <span>Bilibili 开发视频合集</span>
-              </a>
-            </div>
-          </div>
 
           <!-- 右侧：游戏画廊区域 -->
           <div class="relative order-2 lg:order-2">
@@ -285,9 +270,9 @@
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-800/50">
                   <img
-                    :src="currentAnglerImage.image"
-                    :alt="currentAnglerImage.title"
-                    class="w-full h-full object-cover transition-all duration-500"
+                    :src="currentImage.image"
+                    :alt="currentImage.title"
+                    class="w-full h-full object-contain transition-all duration-500"
                   >
                   <!-- 遮罩层 -->
                   <div class="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent"></div>
@@ -301,7 +286,7 @@
 
                   <!-- 图片标题 -->
                   <div class="absolute bottom-4 left-4 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
-                    <p class="text-white text-sm font-medium">{{ currentAnglerImage.title }}</p>
+                    <p class="text-white text-sm font-medium">{{ currentImage.title }}</p>
                   </div>
                 </div>
               </div>
@@ -310,16 +295,16 @@
               <div class="relative">
                 <div
                   class="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
-                  ref="anglerThumbnailContainer"
+                  ref="thumbnailContainer"
                 >
                   <div
-                    v-for="(image, index) in anglerImages"
+                    v-for="(image, index) in gameImages"
                     :key="image.title"
-                    @click="selectAnglerImage(index)"
+                    @click="selectImage(index)"
                     class="flex-shrink-0 cursor-pointer group"
-                    :class="{ 'ring-2 ring-jelly-400': currentAnglerImageIndex === index }"
+                    :class="{ 'ring-2 ring-jelly-400': currentImageIndex === index }"
                   >
-                    <div class="w-28 h-16 rounded-lg overflow-hidden bg-gray-800">
+                    <div class="w-16 h-24 rounded-lg overflow-hidden bg-gray-800">
                       <img
                         :src="image.image"
                         :alt="image.title"
@@ -332,11 +317,11 @@
                 <!-- 滑动指示器 -->
                 <div class="flex justify-center mt-4 space-x-2">
                   <button
-                    v-for="(_, index) in anglerImages"
+                    v-for="(_, index) in gameImages"
                     :key="index"
-                    @click="selectAnglerImage(index)"
+                    @click="selectImage(index)"
                     class="w-2 h-2 rounded-full transition-all duration-300"
-                    :class="currentAnglerImageIndex === index ? 'bg-jelly-400 w-6' : 'bg-gray-600'"
+                    :class="currentImageIndex === index ? 'bg-jelly-400 w-6' : 'bg-gray-600'"
                   ></button>
                 </div>
               </div>
