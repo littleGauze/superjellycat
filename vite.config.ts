@@ -5,6 +5,7 @@ import Components from 'unplugin-vue-components/vite'
 import { resolve } from 'path'
 
 export default defineConfig({
+  assetsInclude: ['**/*.PNG'],
   plugins: [
     vue(),
     AutoImport({
