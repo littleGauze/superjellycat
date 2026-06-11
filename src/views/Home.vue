@@ -132,5 +132,5 @@
 </template>
 
 <script setup lang="ts">
-const earthDefenseTapTapUrl = 'https://www.taptap.cn/app/867574'
+const earthDefenseTapTapUrl = 'https://l.taptap.cn/rT2bFETp?channel=rep-rep_djitefuit5g'
 </script>
