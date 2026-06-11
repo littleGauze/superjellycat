@@ -5,8 +5,8 @@
       <!-- 游戏Banner背景 -->
       <div class="absolute inset-0">
         <img 
-          src="/images/games/littleswordmaster/banner-1920x1080.png" 
-          alt="小小御剑士游戏背景" 
+          src="/images/games/earthDefenseInitiative/banner.png" 
+          alt="地球保卫计划游戏背景" 
           class="w-full h-full object-cover"
         >
         <!-- 渐变遮罩 -->
@@ -38,40 +38,28 @@
             <!-- 游戏标题 -->
             <div class="space-y-3 text-center lg:text-left">
               <div class="flex items-center justify-center lg:justify-start space-x-4">
-                <div class="w-16 h-16 rounded-xl overflow-hidden">
+                <div class="w-16 h-16 rounded-xl overflow-hidden bg-cyan-500/20 border border-cyan-300/30">
                   <img 
-                    src="/images/games/littleswordmaster/logo-512.png" 
-                    alt="小小御剑士logo" 
+                    src="/images/games/earthDefenseInitiative/logo.png" 
+                    alt="地球保卫计划logo" 
                     class="w-full h-full object-cover"
                   >
                 </div>
                 <div>
-                  <h2 class="text-3xl lg:text-4xl font-display font-bold gradient-text">小小御剑士</h2>
-                  <p class="text-lg lg:text-xl text-white font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Little Sword Master</p>
+                  <h2 class="text-3xl lg:text-4xl font-display font-bold gradient-text">地球保卫计划</h2>
+                  <p class="text-lg lg:text-xl text-white font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Earth Defense Project</p>
                 </div>
               </div>
               
               <div class="flex flex-col sm:flex-row sm:items-center gap-3">
                 <div class="inline-block bg-jelly-500/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-jelly-500/30">
-                  <span class="text-jelly-300 font-medium text-sm">现已发布</span>
+                  <span class="text-jelly-300 font-medium text-sm">最新发布</span>
                 </div>
                 
                 <!-- 多平台发布标签 -->
                 <div class="flex gap-2 flex-wrap">
-                  <a href="https://www.taptap.cn/app/766679?os=android" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
+                  <a :href="earthDefenseTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
                     <span class="text-xs">TapTap</span>
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-green-500">
-                    <span class="text-xs">微信</span>
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-red-500">
-                    <span class="text-xs">抖音</span>
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-orange-500">
-                    <span class="text-xs">好游快爆</span>
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-purple-500">
-                    <span class="text-xs">4399</span>
                   </a>
                 </div>
               </div>
@@ -80,17 +68,17 @@
             <!-- 游戏描述 -->
             <div class="bg-black/60 backdrop-blur-lg border border-white/20 rounded-xl p-6 shadow-2xl">
               <p class="text-base lg:text-lg text-white leading-relaxed font-medium" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.9);">
-                融合 Roguelike、平台跳跃、弹幕射击与随机抽牌机制，力求让每一局体验都焕然一新。
-                玩家将置身于不断变化的关卡节奏中：跳跃、躲避、射击，同时运筹抽卡策略。
+                融合引力操控、塔防与肉鸽成长的竖屏休闲游戏。操控月球改变陨石轨迹，
+                接收科研火箭获取经验，构筑专属科技防线。
               </p>
             </div>
             
             <!-- 游戏特色标签 -->
             <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm backdrop-blur-sm border border-purple-500/30">Roguelike</span>
-              <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm backdrop-blur-sm border border-blue-500/30">平台跳跃</span>
-              <span class="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm backdrop-blur-sm border border-green-500/30">弹幕射击</span>
-              <span class="px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-full text-sm backdrop-blur-sm border border-yellow-500/30">随机抽牌</span>
+              <span class="px-4 py-2 bg-cyan-500/20 text-cyan-300 rounded-full text-sm backdrop-blur-sm border border-cyan-500/30">引力操控</span>
+              <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm backdrop-blur-sm border border-blue-500/30">塔防生存</span>
+              <span class="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm backdrop-blur-sm border border-green-500/30">科技卡牌</span>
+              <span class="px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-full text-sm backdrop-blur-sm border border-yellow-500/30">肉鸽成长</span>
             </div>
             
             <!-- 操作按钮 -->
@@ -98,8 +86,8 @@
               <RouterLink to="/products" class="btn-primary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
                 了解详情
               </RouterLink>
-              <a href="https://www.taptap.cn/app/766679?os=android" target="_blank" rel="noopener noreferrer" class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
-                立即体验
+              <a :href="earthDefenseTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
+                前往 TapTap
               </a>
             </div>
           </div>
@@ -144,5 +132,5 @@
 </template>
 
 <script setup lang="ts">
-// Home page component
+const earthDefenseTapTapUrl = 'https://www.taptap.cn/app/867574'
 </script>

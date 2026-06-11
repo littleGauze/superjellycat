@@ -24,6 +24,11 @@ const assetMappings = [
     src: 'src/assets/images/games/littleswordmaster/screenshots',
     dest: 'public/images/games/littleswordmaster/screenshots'
   },
+  // 地球保卫计划图片
+  {
+    src: 'src/assets/images/games/earthDefenseInitiative',
+    dest: 'public/images/games/earthDefenseInitiative'
+  },
   // 救救农场吧图片
   {
     src: 'src/assets/images/games/savethefarm/main.jpg',

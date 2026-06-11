@@ -1,7 +1,126 @@
 <template>
   <div class="grid-background">
-    <!-- 异界钓鱼佬展示 -->
+    <!-- 地球保卫计划展示 -->
     <section class="hero-section">
+      <div class="container-max">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div class="relative order-2 lg:order-1">
+            <div class="space-y-6">
+              <div class="relative">
+                <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
+                  <img
+                    :src="currentEarthDefenseImage.image"
+                    :alt="currentEarthDefenseImage.title"
+                    class="w-full h-full transition-all duration-500"
+                    :class="currentEarthDefenseImage.portrait ? 'object-contain' : 'object-cover'"
+                  >
+                  <div class="absolute inset-0 bg-gradient-to-br from-black/10 to-black/40 pointer-events-none"></div>
+                  <div class="absolute bottom-4 left-4 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
+                    <p class="text-white text-sm font-medium">{{ currentEarthDefenseImage.title }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative">
+                <div
+                  class="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
+                  ref="earthDefenseThumbnailContainer"
+                >
+                  <div
+                    v-for="(image, index) in earthDefenseImages"
+                    :key="image.image"
+                    @click="selectEarthDefenseImage(index)"
+                    class="flex-shrink-0 cursor-pointer group"
+                    :class="{ 'ring-2 ring-jelly-400': currentEarthDefenseImageIndex === index }"
+                  >
+                    <div
+                      class="rounded-lg overflow-hidden bg-gray-800"
+                      :class="image.portrait ? 'w-16 h-28' : 'w-28 h-16'"
+                    >
+                      <img
+                        :src="image.image"
+                        :alt="image.title"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex justify-center mt-4 space-x-2">
+                  <button
+                    v-for="(_, index) in earthDefenseImages"
+                    :key="index"
+                    @click="selectEarthDefenseImage(index)"
+                    class="w-2 h-2 rounded-full transition-all duration-300"
+                    :class="currentEarthDefenseImageIndex === index ? 'bg-jelly-400 w-6' : 'bg-gray-600'"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-1 lg:order-2 space-y-8">
+            <div class="space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
+                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a :href="earthDefenseTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
+                    <span class="text-xs">TapTap</span>
+                  </a>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-20 h-20 rounded-2xl overflow-hidden bg-gray-900/70 border border-white/10 shadow-xl">
+                  <img
+                    src="/images/games/earthDefenseInitiative/logo.png"
+                    alt="地球保卫计划logo"
+                    class="w-full h-full object-cover"
+                  >
+                </div>
+                <div>
+                  <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
+                    <span class="gradient-text">地球保卫计划</span>
+                  </h1>
+                  <p class="text-xl text-gray-300 font-medium">Earth Defense Project</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <p class="text-lg text-gray-300 leading-relaxed">
+                《地球保卫计划》是一款融合引力操控、塔防与肉鸽成长的竖屏休闲游戏。玩家将操控月球改变陨石轨迹，阻止其撞击地球；同时接收地球发射的科研火箭获取经验，解锁护盾、激光炮、轨道炮、导弹等科技武器。
+              </p>
+
+              <div class="space-y-3">
+                <div
+                  v-for="item in earthDefenseSystems"
+                  :key="item"
+                  class="flex items-center space-x-3"
+                >
+                  <div class="w-2 h-2 bg-jelly-400 rounded-full"></div>
+                  <span class="text-gray-300">{{ item }}</span>
+                </div>
+              </div>
+
+              <p class="text-base text-gray-400 leading-relaxed">
+                随着时间推移，陨石将不断增强并出现高速、分裂、巨型等特殊类型。合理搭配科技卡牌，构筑专属防御流派，在无尽陨石风暴中守护人类最后的家园！
+              </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a :href="earthDefenseTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">
+                前往 TapTap
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 异界钓鱼佬展示 -->
+    <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <!-- 左侧：游戏画廊区域 -->
@@ -76,7 +195,7 @@
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
-                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                  <span class="text-jelly-400 font-medium text-sm">现已发布</span>
                 </div>
                 
                 <!-- 多平台下载 -->
@@ -438,7 +557,7 @@
             加入我们的游戏世界，体验独特的冒险之旅
           </p>
           <div class="flex justify-center">
-            <a href="https://www.taptap.cn/app/766679?os=android" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">立即下载</a>
+            <a :href="earthDefenseTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">前往 TapTap</a>
           </div>
         </div>
       </div>
@@ -486,6 +605,7 @@ import anglerFishing from '@/assets/images/games/theisekaiangler/IMG_3807.PNG'
 const showVideoModal = ref(false)
 const currentVideoSrc = ref('')
 const videoPlayer = ref<HTMLVideoElement>()
+const earthDefenseTapTapUrl = 'https://www.taptap.cn/app/867574'
 
 // 视频播放函数
 const playVideo = (videoSrc: string) => {
@@ -500,6 +620,30 @@ const closeVideoModal = () => {
     videoPlayer.value.pause()
   }
 }
+
+const earthDefenseSystems = [
+  '操控月球引力，改变陨石轨迹',
+  '接收科研火箭，获取经验与科技卡牌',
+  '解锁护盾、激光炮、轨道炮、导弹等武器',
+  '应对高速、分裂、巨型等特殊陨石'
+]
+
+const earthDefenseImages = [
+  { title: '游戏 Banner', image: '/images/games/earthDefenseInitiative/banner.png', portrait: false },
+  { title: '月球引力操控', image: '/images/games/earthDefenseInitiative/IMG_4184.PNG', portrait: true },
+  { title: '陨石风暴', image: '/images/games/earthDefenseInitiative/IMG_4188.PNG', portrait: true },
+  { title: '科研火箭', image: '/images/games/earthDefenseInitiative/IMG_4190.PNG', portrait: true },
+  { title: '科技升级', image: '/images/games/earthDefenseInitiative/IMG_4198.PNG', portrait: true },
+  { title: '护盾防线', image: '/images/games/earthDefenseInitiative/IMG_4200.PNG', portrait: true },
+  { title: '武器构筑', image: '/images/games/earthDefenseInitiative/IMG_4201.PNG', portrait: true },
+  { title: '巨型陨石', image: '/images/games/earthDefenseInitiative/IMG_4227.PNG', portrait: true },
+  { title: '防御流派', image: '/images/games/earthDefenseInitiative/IMG_4238.PNG', portrait: true },
+  { title: '无尽守护', image: '/images/games/earthDefenseInitiative/IMG_4241.PNG', portrait: true }
+]
+
+const currentEarthDefenseImageIndex = ref(0)
+const earthDefenseThumbnailContainer = ref<HTMLElement>()
+const currentEarthDefenseImage = computed(() => earthDefenseImages[currentEarthDefenseImageIndex.value])
 
 const gameImages = [
   { title: '游戏Banner', image: '/images/games/littleswordmaster/banner-1920x1080.png' },
@@ -533,6 +677,11 @@ const scrollThumbnailIntoView = (container: HTMLElement | undefined, index: numb
 const selectImage = (index: number) => {
   currentImageIndex.value = index
   nextTick(() => scrollThumbnailIntoView(thumbnailContainer.value, index))
+}
+
+const selectEarthDefenseImage = (index: number) => {
+  currentEarthDefenseImageIndex.value = index
+  nextTick(() => scrollThumbnailIntoView(earthDefenseThumbnailContainer.value, index))
 }
 
 const anglerImages = [
