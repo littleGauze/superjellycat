@@ -113,6 +113,9 @@
               <a :href="earthDefenseTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">
                 前往 TapTap
               </a>
+              <button @click="playVideo(earthDefenseVideoUrl)" class="btn-secondary text-lg px-8 py-4">
+                观看宣传片
+              </button>
             </div>
           </div>
         </div>
@@ -606,6 +609,7 @@ const showVideoModal = ref(false)
 const currentVideoSrc = ref('')
 const videoPlayer = ref<HTMLVideoElement>()
 const earthDefenseTapTapUrl = 'https://www.taptap.cn/app/867574'
+const earthDefenseVideoUrl = '/video/earthDefenseInitiative.mp4'
 
 // 视频播放函数
 const playVideo = (videoSrc: string) => {
