@@ -4,9 +4,9 @@
     <section class="relative min-h-screen flex items-center overflow-hidden">
       <!-- 游戏Banner背景 -->
       <div class="absolute inset-0">
-        <img 
-          src="/images/games/earthDefenseInitiative/banner.png" 
-          alt="地球保卫计划游戏背景" 
+        <img
+          src="/images/games/goldslayerDagger/banner_hov.png"
+          alt="弑神匕首游戏背景"
           class="w-full h-full object-cover"
         >
         <!-- 渐变遮罩 -->
@@ -39,54 +39,54 @@
             <div class="space-y-3 text-center lg:text-left">
               <div class="flex items-center justify-center lg:justify-start space-x-4">
                 <div class="w-16 h-16 rounded-xl overflow-hidden bg-cyan-500/20 border border-cyan-300/30">
-                  <img 
-                    src="/images/games/earthDefenseInitiative/logo.png" 
-                    alt="地球保卫计划logo" 
+                  <img
+                    src="/images/games/goldslayerDagger/logo.png"
+                    alt="弑神匕首logo"
                     class="w-full h-full object-cover"
                   >
                 </div>
                 <div>
-                  <h2 class="text-3xl lg:text-4xl font-display font-bold gradient-text">地球保卫计划</h2>
-                  <p class="text-lg lg:text-xl text-white font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Earth Defense Project</p>
+                  <h2 class="text-3xl lg:text-4xl font-display font-bold gradient-text">弑神匕首</h2>
+                  <p class="text-lg lg:text-xl text-white font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Goldslayer Dagger</p>
                 </div>
               </div>
-              
+
               <div class="flex flex-col sm:flex-row sm:items-center gap-3">
                 <div class="inline-block bg-jelly-500/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-jelly-500/30">
                   <span class="text-jelly-300 font-medium text-sm">最新发布</span>
                 </div>
-                
+
                 <!-- 多平台发布标签 -->
                 <div class="flex gap-2 flex-wrap">
-                  <a :href="earthDefenseTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
+                  <a :href="daggerTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
                     <span class="text-xs">TapTap</span>
                   </a>
                 </div>
               </div>
             </div>
-            
+
             <!-- 游戏描述 -->
             <div class="bg-black/60 backdrop-blur-lg border border-white/20 rounded-xl p-6 shadow-2xl">
               <p class="text-base lg:text-lg text-white leading-relaxed font-medium" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.9);">
-                融合引力操控、塔防与肉鸽成长的竖屏休闲游戏。操控月球改变陨石轨迹，
-                接收科研火箭获取经验，构筑专属科技防线。
+                融合法阵绘制、回合制战斗与 Roguelike 构筑的 2D 像素风肉鸽游戏。亲手绘制法阵发动攻击、防御或诅咒，
+                收集匕首、宝石与挂饰构筑专属流派，踏上弑神之路。
               </p>
             </div>
-            
+
             <!-- 游戏特色标签 -->
             <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <span class="px-4 py-2 bg-cyan-500/20 text-cyan-300 rounded-full text-sm backdrop-blur-sm border border-cyan-500/30">引力操控</span>
-              <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm backdrop-blur-sm border border-blue-500/30">塔防生存</span>
-              <span class="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm backdrop-blur-sm border border-green-500/30">科技卡牌</span>
-              <span class="px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-full text-sm backdrop-blur-sm border border-yellow-500/30">肉鸽成长</span>
+              <span class="px-4 py-2 bg-cyan-500/20 text-cyan-300 rounded-full text-sm backdrop-blur-sm border border-cyan-500/30">法阵绘制</span>
+              <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm backdrop-blur-sm border border-blue-500/30">回合制战斗</span>
+              <span class="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm backdrop-blur-sm border border-green-500/30">Roguelike 构筑</span>
+              <span class="px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-full text-sm backdrop-blur-sm border border-yellow-500/30">像素风美术</span>
             </div>
-            
+
             <!-- 操作按钮 -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <RouterLink to="/products" class="btn-primary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
                 了解详情
               </RouterLink>
-              <a :href="earthDefenseTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
+              <a :href="daggerTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
                 前往 TapTap
               </a>
             </div>
@@ -132,5 +132,5 @@
 </template>
 
 <script setup lang="ts">
-const earthDefenseTapTapUrl = 'https://www.taptap.cn/app/867574'
+const daggerTapTapUrl = 'https://l.taptap.cn/uTFNDi4B?channel=rep-rep_kqof5bro48z'
 </script>

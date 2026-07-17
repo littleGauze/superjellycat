@@ -1,10 +1,148 @@
 <template>
   <div class="grid-background">
-    <!-- 地球保卫计划展示 -->
+    <!-- 弑神匕首展示 -->
     <section class="hero-section">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div class="relative order-2 lg:order-1">
+            <div class="space-y-6">
+              <div class="relative">
+                <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
+                  <img
+                    :src="currentDaggerImage.image"
+                    :alt="currentDaggerImage.title"
+                    class="w-full h-full transition-all duration-500"
+                    :class="currentDaggerImage.portrait ? 'object-contain' : 'object-cover'"
+                  >
+                  <div class="absolute inset-0 bg-gradient-to-br from-black/10 to-black/40 pointer-events-none"></div>
+                  <div class="absolute bottom-4 left-4 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
+                    <p class="text-white text-sm font-medium">{{ currentDaggerImage.title }}</p>
+                  </div>
+
+                  <!-- 视频播放按钮 -->
+                  <div class="absolute bottom-6 right-6">
+                    <button
+                      @click="playVideo(daggerVideoUrl)"
+                      class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 group"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative">
+                <div
+                  class="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
+                  ref="daggerThumbnailContainer"
+                >
+                  <div
+                    v-for="(image, index) in daggerImages"
+                    :key="image.image"
+                    @click="selectDaggerImage(index)"
+                    class="flex-shrink-0 cursor-pointer group"
+                    :class="{ 'ring-2 ring-jelly-400': currentDaggerImageIndex === index }"
+                  >
+                    <div
+                      class="rounded-lg overflow-hidden bg-gray-800"
+                      :class="image.portrait ? 'w-16 h-28' : 'w-28 h-16'"
+                    >
+                      <img
+                        :src="image.image"
+                        :alt="image.title"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex justify-center mt-4 space-x-2">
+                  <button
+                    v-for="(_, index) in daggerImages"
+                    :key="index"
+                    @click="selectDaggerImage(index)"
+                    class="w-2 h-2 rounded-full transition-all duration-300"
+                    :class="currentDaggerImageIndex === index ? 'bg-jelly-400 w-6' : 'bg-gray-600'"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-1 lg:order-2 space-y-8">
+            <div class="space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
+                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a :href="daggerTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
+                    <span class="text-xs">TapTap</span>
+                  </a>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-20 h-20 rounded-2xl overflow-hidden bg-gray-900/70 border border-white/10 shadow-xl">
+                  <img
+                    src="/images/games/goldslayerDagger/logo.png"
+                    alt="弑神匕首logo"
+                    class="w-full h-full object-cover"
+                  >
+                </div>
+                <div>
+                  <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
+                    <span class="gradient-text">弑神匕首</span>
+                  </h1>
+                  <p class="text-xl text-gray-300 font-medium">Goldslayer Dagger</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <p class="text-lg text-gray-300 leading-relaxed">
+                《弑神匕首》是一款融合法阵绘制、回合制战斗与 Roguelike 构筑的 2D 像素风肉鸽游戏。在伪神统治的黑暗时代，身为矿坑奴工的你意外获得一把传说中的弑神匕首，并觉醒了失落已久的法阵之力。
+              </p>
+
+              <div class="space-y-3">
+                <div
+                  v-for="item in daggerSystems"
+                  :key="item"
+                  class="flex items-center space-x-3"
+                >
+                  <div class="w-2 h-2 bg-jelly-400 rounded-full"></div>
+                  <span class="text-gray-300">{{ item }}</span>
+                </div>
+              </div>
+
+              <p class="text-base text-gray-400 leading-relaxed">
+                收集匕首、宝石与挂饰，构筑专属流派，挑战天使、神使与伪神，最终踏上弑神之路。
+              </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a :href="daggerTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">
+                前往 TapTap
+              </a>
+              <button @click="playVideo(daggerVideoUrl)" class="btn-secondary text-lg px-8 py-4">
+                观看宣传片
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 地球保卫计划展示 -->
+    <section class="section-spacing">
+      <div class="container-max">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -59,11 +197,11 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
-                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                  <span class="text-jelly-400 font-medium text-sm">现已发布</span>
                 </div>
                 <div class="flex gap-2 flex-wrap">
                   <a :href="earthDefenseTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
@@ -292,6 +430,71 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <!-- 右侧：游戏画廊区域 -->
+          <div class="relative order-2 lg:order-2">
+            <div class="space-y-6">
+              <!-- 主图展示 -->
+              <div class="relative">
+                <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-800/50">
+                  <img
+                    :src="currentImage.image"
+                    :alt="currentImage.title"
+                    class="w-full h-full object-contain transition-all duration-500"
+                  >
+                  <!-- 遮罩层 -->
+                  <div class="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent"></div>
+
+                  <!-- 装饰性元素 -->
+                  <div class="absolute top-4 right-4 w-8 h-8 bg-jelly-500/30 rounded-full animate-glow"></div>
+                  <div
+                    class="absolute bottom-4 left-4 w-6 h-6 bg-purple-500/30 rounded-full animate-glow"
+                    style="animation-delay: 1s;"
+                  ></div>
+
+                  <!-- 图片标题 -->
+                  <div class="absolute bottom-4 left-4 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
+                    <p class="text-white text-sm font-medium">{{ currentImage.title }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 缩略图滑动区域 -->
+              <div class="relative">
+                <div
+                  class="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
+                  ref="thumbnailContainer"
+                >
+                  <div
+                    v-for="(image, index) in gameImages"
+                    :key="image.title"
+                    @click="selectImage(index)"
+                    class="flex-shrink-0 cursor-pointer group"
+                    :class="{ 'ring-2 ring-jelly-400': currentImageIndex === index }"
+                  >
+                    <div class="w-16 h-24 rounded-lg overflow-hidden bg-gray-800">
+                      <img
+                        :src="image.image"
+                        :alt="image.title"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 滑动指示器 -->
+                <div class="flex justify-center mt-4 space-x-2">
+                  <button
+                    v-for="(_, index) in gameImages"
+                    :key="index"
+                    @click="selectImage(index)"
+                    class="w-2 h-2 rounded-full transition-all duration-300"
+                    :class="currentImageIndex === index ? 'bg-jelly-400 w-6' : 'bg-gray-600'"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- 左侧：游戏信息区域 -->
           <div class="order-1 lg:order-1 space-y-8">
             <!-- 游戏标题 -->
@@ -384,169 +587,6 @@
               </a>
             </div>
           </div>
-
-          <!-- 右侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-2">
-            <div class="space-y-6">
-              <!-- 主图展示 -->
-              <div class="relative">
-                <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-800/50">
-                  <img
-                    :src="currentImage.image"
-                    :alt="currentImage.title"
-                    class="w-full h-full object-contain transition-all duration-500"
-                  >
-                  <!-- 遮罩层 -->
-                  <div class="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent"></div>
-
-                  <!-- 装饰性元素 -->
-                  <div class="absolute top-4 right-4 w-8 h-8 bg-jelly-500/30 rounded-full animate-glow"></div>
-                  <div
-                    class="absolute bottom-4 left-4 w-6 h-6 bg-purple-500/30 rounded-full animate-glow"
-                    style="animation-delay: 1s;"
-                  ></div>
-
-                  <!-- 图片标题 -->
-                  <div class="absolute bottom-4 left-4 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
-                    <p class="text-white text-sm font-medium">{{ currentImage.title }}</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 缩略图滑动区域 -->
-              <div class="relative">
-                <div
-                  class="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
-                  ref="thumbnailContainer"
-                >
-                  <div
-                    v-for="(image, index) in gameImages"
-                    :key="image.title"
-                    @click="selectImage(index)"
-                    class="flex-shrink-0 cursor-pointer group"
-                    :class="{ 'ring-2 ring-jelly-400': currentImageIndex === index }"
-                  >
-                    <div class="w-16 h-24 rounded-lg overflow-hidden bg-gray-800">
-                      <img
-                        :src="image.image"
-                        :alt="image.title"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      >
-                    </div>
-                  </div>
-                </div>
-
-                <!-- 滑动指示器 -->
-                <div class="flex justify-center mt-4 space-x-2">
-                  <button
-                    v-for="(_, index) in gameImages"
-                    :key="index"
-                    @click="selectImage(index)"
-                    class="w-2 h-2 rounded-full transition-all duration-300"
-                    :class="currentImageIndex === index ? 'bg-jelly-400 w-6' : 'bg-gray-600'"
-                  ></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 更多游戏 -->
-    <section class="section-spacing">
-      <div class="container-max">
-        <div
-          v-for="(game, index) in upcomingGames"
-          :key="game.title"
-          class="mb-16"
-        >
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <!-- 游戏媒体区域 -->
-            <div
-              class="relative order-2"
-              :class="index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'"
-            >
-              <div class="space-y-6">
-                <!-- 主图展示 -->
-                <div class="relative">
-                  <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-800/50">
-                    <img
-                      :src="game.image"
-                      :alt="game.title"
-                      class="w-full h-full object-cover transition-all duration-500"
-                    >
-                    <!-- 遮罩层 -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent"></div>
-
-                    <!-- 装饰性元素 -->
-                    <div class="absolute top-4 right-4 w-8 h-8 bg-jelly-500/30 rounded-full animate-glow"></div>
-                    <div
-                      class="absolute bottom-4 left-4 w-6 h-6 bg-purple-500/30 rounded-full animate-glow"
-                      style="animation-delay: 1s;"
-                    ></div>
-
-                    <!-- 图片标题 -->
-                    <div class="absolute bottom-4 left-4 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
-                      <p class="text-white text-sm font-medium">{{ game.title }}</p>
-                    </div>
-
-                    <!-- 视频播放按钮 -->
-                    <div class="absolute bottom-6 right-6">
-                      <button
-                        @click="playVideo('/video/savethefarm.mp4')"
-                        class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 group"
-                      >
-                        <svg
-                          class="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 游戏信息区域 -->
-            <div
-              class="order-1 space-y-8"
-              :class="index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'"
-            >
-              <!-- 游戏标题 -->
-              <div class="space-y-4">
-                <div class="flex flex-col sm:flex-row sm:items-center gap-4">
-                  <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
-                    <span class="text-jelly-400 font-medium text-sm">{{ game.status }}</span>
-                  </div>
-                </div>
-                <h3 class="text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
-                  <span class="gradient-text">{{ game.title }}</span>
-                </h3>
-                <p class="text-xl text-gray-300 font-medium">{{ game.englishTitle }}</p>
-              </div>
-
-              <!-- 游戏描述 -->
-              <div class="space-y-4">
-                <p class="text-lg text-gray-300 leading-relaxed">
-                  {{ game.description }}
-                </p>
-              </div>
-
-              <!-- 操作按钮 -->
-              <div class="flex flex-col sm:flex-row gap-4">
-                <a href="https://www.bilibili.com/video/BV1YzagzEEQr/?vd_source=475144602498f2d7de7a1820b128c413" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
-                  关注开发进度
-                </a>
-                <button @click="playVideo('/video/savethefarm.mp4')" class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
-                  观看预告片
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -560,7 +600,7 @@
             加入我们的游戏世界，体验独特的冒险之旅
           </p>
           <div class="flex justify-center">
-            <a :href="earthDefenseTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">前往 TapTap</a>
+            <a :href="daggerTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">前往 TapTap</a>
           </div>
         </div>
       </div>
@@ -610,6 +650,8 @@ const currentVideoSrc = ref('')
 const videoPlayer = ref<HTMLVideoElement>()
 const earthDefenseTapTapUrl = 'https://www.taptap.cn/app/867574'
 const earthDefenseVideoUrl = '/video/earthDefenseInitiative.mp4'
+const daggerTapTapUrl = 'https://l.taptap.cn/uTFNDi4B?channel=rep-rep_kqof5bro48z'
+const daggerVideoUrl = '/video/goldslayerDagger.mp4'
 
 // 视频播放函数
 const playVideo = (videoSrc: string) => {
@@ -623,6 +665,35 @@ const closeVideoModal = () => {
   if (videoPlayer.value) {
     videoPlayer.value.pause()
   }
+}
+
+const daggerSystems = [
+  '亲手绘制法阵，发动攻击、防御或诅咒',
+  '图形与面积匹配度决定法阵威力',
+  '收集匕首、宝石与挂饰，构筑专属流派',
+  '回合制战斗，挑战天使、神使与伪神'
+]
+
+const daggerImages = [
+  { title: '游戏 Banner', image: '/images/games/goldslayerDagger/banner_hov.png', portrait: false },
+  { title: '法阵绘制', image: '/images/games/goldslayerDagger/1.webp', portrait: true },
+  { title: '回合制战斗', image: '/images/games/goldslayerDagger/2.webp', portrait: true },
+  { title: '像素风场景', image: '/images/games/goldslayerDagger/3.webp', portrait: true },
+  { title: '匕首收集', image: '/images/games/goldslayerDagger/4.webp', portrait: true },
+  { title: '宝石构筑', image: '/images/games/goldslayerDagger/5.webp', portrait: true },
+  { title: '挂饰搭配', image: '/images/games/goldslayerDagger/6.webp', portrait: true },
+  { title: 'Boss 对决', image: '/images/games/goldslayerDagger/7.webp', portrait: true },
+  { title: '弑神之路', image: '/images/games/goldslayerDagger/8.webp', portrait: true },
+  { title: '流派构筑', image: '/images/games/goldslayerDagger/9.webp', portrait: true }
+]
+
+const currentDaggerImageIndex = ref(0)
+const daggerThumbnailContainer = ref<HTMLElement>()
+const currentDaggerImage = computed(() => daggerImages[currentDaggerImageIndex.value])
+
+const selectDaggerImage = (index: number) => {
+  currentDaggerImageIndex.value = index
+  nextTick(() => scrollThumbnailIntoView(daggerThumbnailContainer.value, index))
 }
 
 const earthDefenseSystems = [
@@ -727,17 +798,6 @@ const anglerSystems = [
     number: '04',
     title: '四季挑战',
     text: '穿过春夏秋冬的章节节奏，完成休整、商店选择与关底 Boss 挑战。'
-  }
-]
-
-const upcomingGames = [
-  {
-    title: '救救农场吧',
-    englishTitle: 'Save the Farm',
-    description: '在一个原本风和日丽的下午，突然乌云密布一道闪电劈中农场，留下一个神秘的传送门，农场里的动物纷纷被传送门传送到了世界各地，农场没有小动物怎么行呢？作为农场主的你准备带上装备去找回失踪的动物，励志要寻回每一只农场动物，从此踏上了拯救农场和小动物的旅程。',
-    status: '开发中',
-    image: '/images/games/savethefarm/main.jpg',
-    video: '/savethefarm/savethefarm.mp4'
   }
 ]
 </script>

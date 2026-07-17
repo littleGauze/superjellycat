@@ -29,10 +29,10 @@ const assetMappings = [
     src: 'src/assets/images/games/earthDefenseInitiative',
     dest: 'public/images/games/earthDefenseInitiative'
   },
-  // 救救农场吧图片
+  // 弑神匕首图片
   {
-    src: 'src/assets/images/games/savethefarm/main.jpg',
-    dest: 'public/images/games/savethefarm/main.jpg'
+    src: 'src/assets/images/games/goldslayerDagger',
+    dest: 'public/images/games/goldslayerDagger'
   },
   // 工作室Logo
   {
