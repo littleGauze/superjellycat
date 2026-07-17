@@ -648,7 +648,7 @@ import anglerFishing from '@/assets/images/games/theisekaiangler/IMG_3807.PNG'
 const showVideoModal = ref(false)
 const currentVideoSrc = ref('')
 const videoPlayer = ref<HTMLVideoElement>()
-const earthDefenseTapTapUrl = 'https://www.taptap.cn/app/867574'
+const earthDefenseTapTapUrl = 'https://l.taptap.cn/rT2bFETp?channel=rep-rep_djitefuit5g'
 const earthDefenseVideoUrl = '/video/earthDefenseInitiative.mp4'
 const daggerTapTapUrl = 'https://l.taptap.cn/uTFNDi4B?channel=rep-rep_kqof5bro48z'
 const daggerVideoUrl = '/video/goldslayerDagger.mp4'
