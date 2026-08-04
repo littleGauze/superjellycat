@@ -34,6 +34,11 @@ const assetMappings = [
     src: 'src/assets/images/games/goldslayerDagger',
     dest: 'public/images/games/goldslayerDagger'
   },
+  // 末日喋血双雄图片
+  {
+    src: 'src/assets/images/games/bloodfallDuo',
+    dest: 'public/images/games/bloodfallDuo'
+  },
   // 工作室Logo
   {
     src: 'src/assets/images/superjellycat.png',

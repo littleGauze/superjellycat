@@ -1,10 +1,146 @@
 <template>
   <div class="grid-background">
-    <!-- 弑神匕首展示 -->
+    <!-- 末日喋血双雄展示 -->
     <section class="hero-section">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <!-- 左侧：游戏画廊区域 -->
           <div class="relative order-2 lg:order-1">
+            <div class="space-y-6">
+              <div class="relative">
+                <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
+                  <img
+                    :src="currentBloodfallImage.image"
+                    :alt="currentBloodfallImage.title"
+                    class="w-full h-full object-cover transition-all duration-500"
+                  >
+                  <div class="absolute inset-0 bg-gradient-to-br from-black/10 to-black/40 pointer-events-none"></div>
+                  <div class="absolute bottom-4 left-4 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
+                    <p class="text-white text-sm font-medium">{{ currentBloodfallImage.title }}</p>
+                  </div>
+
+                  <!-- 视频播放按钮 -->
+                  <div class="absolute bottom-6 right-6">
+                    <button
+                      @click="playVideo(bloodfallVideoUrl)"
+                      class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 group"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative">
+                <div
+                  class="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
+                  ref="bloodfallThumbnailContainer"
+                >
+                  <div
+                    v-for="(image, index) in bloodfallImages"
+                    :key="image.image"
+                    @click="selectBloodfallImage(index)"
+                    class="flex-shrink-0 cursor-pointer group"
+                    :class="{ 'ring-2 ring-jelly-400': currentBloodfallImageIndex === index }"
+                  >
+                    <div class="w-28 h-16 rounded-lg overflow-hidden bg-gray-800">
+                      <img
+                        :src="image.image"
+                        :alt="image.title"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex justify-center mt-4 space-x-2">
+                  <button
+                    v-for="(_, index) in bloodfallImages"
+                    :key="index"
+                    @click="selectBloodfallImage(index)"
+                    class="w-2 h-2 rounded-full transition-all duration-300"
+                    :class="currentBloodfallImageIndex === index ? 'bg-jelly-400 w-6' : 'bg-gray-600'"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 右侧：游戏信息区域 -->
+          <div class="order-1 lg:order-2 space-y-8">
+            <div class="space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
+                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a :href="bloodfallTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
+                    <span class="text-xs">TapTap</span>
+                  </a>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-20 h-20 rounded-2xl overflow-hidden bg-gray-900/70 border border-white/10 shadow-xl">
+                  <img
+                    src="/images/games/bloodfallDuo/logo.png"
+                    alt="末日喋血双雄logo"
+                    class="w-full h-full object-cover"
+                  >
+                </div>
+                <div>
+                  <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
+                    <span class="gradient-text">末日喋血双雄</span>
+                  </h1>
+                  <p class="text-xl text-gray-300 font-medium">Bloodfall Duo</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <p class="text-lg text-gray-300 leading-relaxed">
+                《末日喋血双雄》是一款横屏俯视角末日生存射击游戏。文明崩塌、异变怪物席卷荒野，你将独自作战或与好友并肩求生，在昼夜交替、天气变幻的开放战场中搜寻空投、收集武器、搭配护具与补给，迎战不断强化的尸潮、精英敌人与弹幕 Boss。
+              </p>
+
+              <div class="space-y-3">
+                <div
+                  v-for="item in bloodfallSystems"
+                  :key="item"
+                  class="flex items-center space-x-3"
+                >
+                  <div class="w-2 h-2 bg-jelly-400 rounded-full"></div>
+                  <span class="text-gray-300">{{ item }}</span>
+                </div>
+              </div>
+
+              <p class="text-base text-gray-400 leading-relaxed">
+                探索随机事件，营救幸存者，利用短暂的白昼整备防线，并在危机四伏的黑夜中坚守到底。每一次出发都有不同的资源与挑战，末日生存、Boss 连战及排行榜玩法，更将持续考验你们的火力、配合与临场抉择。能否杀出重围，成为废土中最后的传奇双雄？
+              </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a :href="bloodfallTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">
+                前往 TapTap
+              </a>
+              <button @click="playVideo(bloodfallVideoUrl)" class="btn-secondary text-lg px-8 py-4">
+                观看宣传片
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 弑神匕首展示 -->
+    <section class="section-spacing">
+      <div class="container-max">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -75,11 +211,11 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
-                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                  <span class="text-jelly-400 font-medium text-sm">现已发布</span>
                 </div>
                 <div class="flex gap-2 flex-wrap">
                   <a :href="daggerTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
@@ -142,7 +278,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -197,7 +333,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -264,8 +400,8 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <!-- 左侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-1">
+          <!-- 右侧：游戏画廊区域 -->
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <!-- 主图展示 -->
               <div class="relative">
@@ -330,15 +466,15 @@
             </div>
           </div>
 
-          <!-- 右侧：游戏信息区域 -->
-          <div class="order-1 lg:order-2 space-y-8">
+          <!-- 左侧：游戏信息区域 -->
+          <div class="order-1 lg:order-1 space-y-8">
             <!-- 游戏标题 -->
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
                   <span class="text-jelly-400 font-medium text-sm">现已发布</span>
                 </div>
-                
+
                 <!-- 多平台下载 -->
                 <div class="flex items-center gap-2">
                   <div class="flex gap-2 flex-wrap">
@@ -430,8 +566,8 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <!-- 右侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-2">
+          <!-- 左侧：游戏画廊区域 -->
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <!-- 主图展示 -->
               <div class="relative">
@@ -495,8 +631,8 @@
             </div>
           </div>
 
-          <!-- 左侧：游戏信息区域 -->
-          <div class="order-1 lg:order-1 space-y-8">
+          <!-- 右侧：游戏信息区域 -->
+          <div class="order-1 lg:order-2 space-y-8">
             <!-- 游戏标题 -->
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -600,7 +736,7 @@
             加入我们的游戏世界，体验独特的冒险之旅
           </p>
           <div class="flex justify-center">
-            <a :href="daggerTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">前往 TapTap</a>
+            <a :href="bloodfallTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">前往 TapTap</a>
           </div>
         </div>
       </div>
@@ -652,6 +788,8 @@ const earthDefenseTapTapUrl = 'https://l.taptap.cn/rT2bFETp?channel=rep-rep_djit
 const earthDefenseVideoUrl = '/video/earthDefenseInitiative.mp4'
 const daggerTapTapUrl = 'https://l.taptap.cn/uTFNDi4B?channel=rep-rep_kqof5bro48z'
 const daggerVideoUrl = '/video/goldslayerDagger.mp4'
+const bloodfallTapTapUrl = 'https://l.taptap.cn/x0dHwsJY?channel=rep-rep_j9ktjgag7ko'
+const bloodfallVideoUrl = '/video/bloodfallDuo.mp4'
 
 // 视频播放函数
 const playVideo = (videoSrc: string) => {
@@ -665,6 +803,37 @@ const closeVideoModal = () => {
   if (videoPlayer.value) {
     videoPlayer.value.pause()
   }
+}
+
+const bloodfallSystems = [
+  '昼夜交替、天气变幻的开放战场',
+  '单人作战或与好友双人组队求生',
+  '搜寻空投，收集武器、护具与补给',
+  '迎战尸潮、精英敌人与弹幕 Boss'
+]
+
+const bloodfallImages = [
+  { title: '游戏 Banner', image: '/images/games/bloodfallDuo/banner.png' },
+  { title: '双雄并肩', image: '/images/games/bloodfallDuo/IMG_4110.PNG' },
+  { title: '白昼推进', image: '/images/games/bloodfallDuo/IMG_4622.PNG' },
+  { title: '空投搜寻', image: '/images/games/bloodfallDuo/IMG_4623.PNG' },
+  { title: '黑夜尸潮', image: '/images/games/bloodfallDuo/IMG_4616.PNG' },
+  { title: '弹幕交火', image: '/images/games/bloodfallDuo/IMG_4618.PNG' },
+  { title: '弹幕 Boss', image: '/images/games/bloodfallDuo/IMG_4626.PNG' },
+  { title: 'Boss 连战', image: '/images/games/bloodfallDuo/IMG_4627.PNG' },
+  { title: '荒野商人', image: '/images/games/bloodfallDuo/IMG_4621.PNG' },
+  { title: '外骨骼改装', image: '/images/games/bloodfallDuo/IMG_4620.PNG' },
+  { title: '无人机支援', image: '/images/games/bloodfallDuo/IMG_4624.PNG' },
+  { title: '挑战模式与排行榜', image: '/images/games/bloodfallDuo/IMG_4602.PNG' }
+]
+
+const currentBloodfallImageIndex = ref(0)
+const bloodfallThumbnailContainer = ref<HTMLElement>()
+const currentBloodfallImage = computed(() => bloodfallImages[currentBloodfallImageIndex.value])
+
+const selectBloodfallImage = (index: number) => {
+  currentBloodfallImageIndex.value = index
+  nextTick(() => scrollThumbnailIntoView(bloodfallThumbnailContainer.value, index))
 }
 
 const daggerSystems = [
