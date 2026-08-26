@@ -39,6 +39,11 @@ const assetMappings = [
     src: 'src/assets/images/games/bloodfallDuo',
     dest: 'public/images/games/bloodfallDuo'
   },
+  // 一锤子买卖图片
+  {
+    src: 'src/assets/images/games/golden-egg-smash',
+    dest: 'public/images/games/golden-egg-smash'
+  },
   // 工作室Logo
   {
     src: 'src/assets/images/superjellycat.png',

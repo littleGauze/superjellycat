@@ -1,11 +1,149 @@
 <template>
   <div class="grid-background">
-    <!-- 末日喋血双雄展示 -->
+    <!-- 一锤子买卖展示 -->
     <section class="hero-section">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <!-- 左侧：游戏画廊区域 -->
           <div class="relative order-2 lg:order-1">
+            <div class="space-y-6">
+              <div class="relative">
+                <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
+                  <img
+                    :src="currentEggSmashImage.image"
+                    :alt="currentEggSmashImage.title"
+                    class="w-full h-full transition-all duration-500"
+                    :class="currentEggSmashImage.portrait ? 'object-contain' : 'object-cover'"
+                  >
+                  <div class="absolute inset-0 bg-gradient-to-br from-black/10 to-black/40 pointer-events-none"></div>
+                  <div class="absolute bottom-4 left-4 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
+                    <p class="text-white text-sm font-medium">{{ currentEggSmashImage.title }}</p>
+                  </div>
+
+                  <!-- 视频播放按钮（宣传片待上传：public/video/golden-egg-smash.mp4） -->
+                  <div class="absolute bottom-6 right-6">
+                    <button
+                      @click="playVideo(eggSmashVideoUrl)"
+                      class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 group"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative">
+                <div
+                  class="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
+                  ref="eggSmashThumbnailContainer"
+                >
+                  <div
+                    v-for="(image, index) in eggSmashImages"
+                    :key="image.image"
+                    @click="selectEggSmashImage(index)"
+                    class="flex-shrink-0 cursor-pointer group"
+                    :class="{ 'ring-2 ring-jelly-400': currentEggSmashImageIndex === index }"
+                  >
+                    <div
+                      class="rounded-lg overflow-hidden bg-gray-800"
+                      :class="image.portrait ? 'w-16 h-28' : 'w-28 h-16'"
+                    >
+                      <img
+                        :src="image.image"
+                        :alt="image.title"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex justify-center mt-4 space-x-2">
+                  <button
+                    v-for="(_, index) in eggSmashImages"
+                    :key="index"
+                    @click="selectEggSmashImage(index)"
+                    class="w-2 h-2 rounded-full transition-all duration-300"
+                    :class="currentEggSmashImageIndex === index ? 'bg-jelly-400 w-6' : 'bg-gray-600'"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-1 lg:order-2 space-y-8">
+            <div class="space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
+                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a :href="eggSmashTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
+                    <span class="text-xs">TapTap</span>
+                  </a>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-20 h-20 rounded-2xl overflow-hidden bg-gray-900/70 border border-white/10 shadow-xl">
+                  <img
+                    src="/images/games/golden-egg-smash/logo.png"
+                    alt="一锤子买卖logo"
+                    class="w-full h-full object-cover"
+                  >
+                </div>
+                <div>
+                  <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
+                    <span class="gradient-text">一锤子买卖</span>
+                  </h1>
+                  <p class="text-xl text-gray-300 font-medium">Golden Egg Smash</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <p class="text-lg text-gray-300 leading-relaxed">
+                《一锤子买卖》是一款轻松爽快的增量敲蛋成长游戏。组合不同锤子卡，击碎不断成长的金蛋，触发连锁伤害、特殊蛋与 Boss 挑战。收集金币和黄金碎片，解锁永久成长，在无尽模式中不断刷新自己的伤害与财富记录。
+              </p>
+
+              <div class="space-y-3">
+                <div
+                  v-for="item in eggSmashSystems"
+                  :key="item"
+                  class="flex items-center space-x-3"
+                >
+                  <div class="w-2 h-2 bg-jelly-400 rounded-full"></div>
+                  <span class="text-gray-300">{{ item }}</span>
+                </div>
+              </div>
+
+              <p class="text-base text-gray-400 leading-relaxed">
+                新增限时任务和赌石事件，可以更快提高财富，当然也有破产风险——锤下去，看看这一锤子能砸出多少！
+              </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a :href="eggSmashTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">
+                前往 TapTap
+              </a>
+              <button @click="playVideo(eggSmashVideoUrl)" class="btn-secondary text-lg px-8 py-4">
+                观看宣传片
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 末日喋血双雄展示 -->
+    <section class="section-spacing">
+      <div class="container-max">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <!-- 右侧：游戏画廊区域 -->
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -72,12 +210,12 @@
             </div>
           </div>
 
-          <!-- 右侧：游戏信息区域 -->
-          <div class="order-1 lg:order-2 space-y-8">
+          <!-- 左侧：游戏信息区域 -->
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
-                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                  <span class="text-jelly-400 font-medium text-sm">现已发布</span>
                 </div>
                 <div class="flex gap-2 flex-wrap">
                   <a :href="bloodfallTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
@@ -140,7 +278,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -211,7 +349,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -278,7 +416,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-1">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -333,7 +471,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -400,8 +538,8 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <!-- 右侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-2">
+          <!-- 左侧：游戏画廊区域 -->
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <!-- 主图展示 -->
               <div class="relative">
@@ -466,15 +604,15 @@
             </div>
           </div>
 
-          <!-- 左侧：游戏信息区域 -->
-          <div class="order-1 lg:order-1 space-y-8">
+          <!-- 右侧：游戏信息区域 -->
+          <div class="order-1 lg:order-2 space-y-8">
             <!-- 游戏标题 -->
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
                   <span class="text-jelly-400 font-medium text-sm">现已发布</span>
                 </div>
-
+                
                 <!-- 多平台下载 -->
                 <div class="flex items-center gap-2">
                   <div class="flex gap-2 flex-wrap">
@@ -566,8 +704,8 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <!-- 左侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-1">
+          <!-- 右侧：游戏画廊区域 -->
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <!-- 主图展示 -->
               <div class="relative">
@@ -631,8 +769,8 @@
             </div>
           </div>
 
-          <!-- 右侧：游戏信息区域 -->
-          <div class="order-1 lg:order-2 space-y-8">
+          <!-- 左侧：游戏信息区域 -->
+          <div class="order-1 lg:order-1 space-y-8">
             <!-- 游戏标题 -->
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -736,7 +874,7 @@
             加入我们的游戏世界，体验独特的冒险之旅
           </p>
           <div class="flex justify-center">
-            <a :href="bloodfallTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">前往 TapTap</a>
+            <a :href="eggSmashTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">前往 TapTap</a>
           </div>
         </div>
       </div>
@@ -788,6 +926,8 @@ const earthDefenseTapTapUrl = 'https://l.taptap.cn/rT2bFETp?channel=rep-rep_djit
 const earthDefenseVideoUrl = '/video/earthDefenseInitiative.mp4'
 const daggerTapTapUrl = 'https://l.taptap.cn/uTFNDi4B?channel=rep-rep_kqof5bro48z'
 const daggerVideoUrl = '/video/goldslayerDagger.mp4'
+const eggSmashTapTapUrl = 'https://tap.cn/Bdkma8m8'
+const eggSmashVideoUrl = '/video/golden-egg-smash.mp4'
 const bloodfallTapTapUrl = 'https://l.taptap.cn/x0dHwsJY?channel=rep-rep_j9ktjgag7ko'
 const bloodfallVideoUrl = '/video/bloodfallDuo.mp4'
 
@@ -834,6 +974,35 @@ const currentBloodfallImage = computed(() => bloodfallImages[currentBloodfallIma
 const selectBloodfallImage = (index: number) => {
   currentBloodfallImageIndex.value = index
   nextTick(() => scrollThumbnailIntoView(bloodfallThumbnailContainer.value, index))
+}
+
+const eggSmashSystems = [
+  '组合不同锤子卡，击碎不断成长的金蛋',
+  '触发连锁伤害、特殊蛋与 Boss 挑战',
+  '收集金币与黄金碎片，解锁永久成长',
+  '无尽模式不断刷新伤害与财富记录'
+]
+
+const eggSmashImages = [
+  { title: '游戏 Banner', image: '/images/games/golden-egg-smash/banner.png', portrait: false },
+  { title: '敲蛋开局', image: '/images/games/golden-egg-smash/1.png', portrait: true },
+  { title: '锤子卡组合', image: '/images/games/golden-egg-smash/2.png', portrait: true },
+  { title: '连锁伤害', image: '/images/games/golden-egg-smash/3.png', portrait: true },
+  { title: '特殊金蛋', image: '/images/games/golden-egg-smash/4.png', portrait: true },
+  { title: 'Boss 挑战', image: '/images/games/golden-egg-smash/5.png', portrait: true },
+  { title: '永久成长', image: '/images/games/golden-egg-smash/6.png', portrait: true },
+  { title: '财富积累', image: '/images/games/golden-egg-smash/7.png', portrait: true },
+  { title: '限时任务', image: '/images/games/golden-egg-smash/8.png', portrait: true },
+  { title: '无尽记录', image: '/images/games/golden-egg-smash/9.png', portrait: true }
+]
+
+const currentEggSmashImageIndex = ref(0)
+const eggSmashThumbnailContainer = ref<HTMLElement>()
+const currentEggSmashImage = computed(() => eggSmashImages[currentEggSmashImageIndex.value])
+
+const selectEggSmashImage = (index: number) => {
+  currentEggSmashImageIndex.value = index
+  nextTick(() => scrollThumbnailIntoView(eggSmashThumbnailContainer.value, index))
 }
 
 const daggerSystems = [

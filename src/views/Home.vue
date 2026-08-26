@@ -5,8 +5,8 @@
       <!-- 游戏Banner背景 -->
       <div class="absolute inset-0">
         <img
-          src="/images/games/bloodfallDuo/banner.png"
-          alt="末日喋血双雄游戏背景"
+          src="/images/games/golden-egg-smash/banner.png"
+          alt="一锤子买卖游戏背景"
           class="w-full h-full object-cover"
         >
         <!-- 渐变遮罩 -->
@@ -38,16 +38,16 @@
             <!-- 游戏标题 -->
             <div class="space-y-3 text-center lg:text-left">
               <div class="flex items-center justify-center lg:justify-start space-x-4">
-                <div class="w-16 h-16 rounded-xl overflow-hidden bg-cyan-500/20 border border-cyan-300/30">
+                <div class="w-16 h-16 rounded-xl overflow-hidden bg-amber-500/20 border border-amber-300/30">
                   <img
-                    src="/images/games/bloodfallDuo/logo.png"
-                    alt="末日喋血双雄logo"
+                    src="/images/games/golden-egg-smash/logo.png"
+                    alt="一锤子买卖logo"
                     class="w-full h-full object-cover"
                   >
                 </div>
                 <div>
-                  <h2 class="text-3xl lg:text-4xl font-display font-bold gradient-text">末日喋血双雄</h2>
-                  <p class="text-lg lg:text-xl text-white font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Bloodfall Duo</p>
+                  <h2 class="text-3xl lg:text-4xl font-display font-bold gradient-text">一锤子买卖</h2>
+                  <p class="text-lg lg:text-xl text-white font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Golden Egg Smash</p>
                 </div>
               </div>
 
@@ -58,7 +58,7 @@
 
                 <!-- 多平台发布标签 -->
                 <div class="flex gap-2 flex-wrap">
-                  <a :href="bloodfallTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
+                  <a :href="eggSmashTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
                     <span class="text-xs">TapTap</span>
                   </a>
                 </div>
@@ -68,17 +68,16 @@
             <!-- 游戏描述 -->
             <div class="bg-black/60 backdrop-blur-lg border border-white/20 rounded-xl p-6 shadow-2xl">
               <p class="text-base lg:text-lg text-white leading-relaxed font-medium" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.9);">
-                横屏俯视角末日生存射击游戏。文明崩塌、异变怪物席卷荒野，独自作战或与好友并肩求生，
-                在昼夜交替、天气变幻的开放战场中搜寻空投、搭配武器与护具，迎战不断强化的尸潮与弹幕 Boss。
+                轻松爽快的增量敲蛋成长游戏。组合不同锤子卡，击碎不断成长的金蛋，触发连锁伤害、特殊蛋与 Boss 挑战，在无尽模式中刷新伤害与财富记录。
               </p>
             </div>
 
             <!-- 游戏特色标签 -->
             <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <span class="px-4 py-2 bg-cyan-500/20 text-cyan-300 rounded-full text-sm backdrop-blur-sm border border-cyan-500/30">末日生存</span>
-              <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm backdrop-blur-sm border border-blue-500/30">双人合作</span>
-              <span class="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm backdrop-blur-sm border border-green-500/30">俯视角射击</span>
-              <span class="px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-full text-sm backdrop-blur-sm border border-yellow-500/30">弹幕 Boss</span>
+              <span class="px-4 py-2 bg-amber-500/20 text-amber-300 rounded-full text-sm backdrop-blur-sm border border-amber-500/30">增量成长</span>
+              <span class="px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-full text-sm backdrop-blur-sm border border-yellow-500/30">锤子卡组合</span>
+              <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full text-sm backdrop-blur-sm border border-orange-500/30">连锁伤害</span>
+              <span class="px-4 py-2 bg-red-500/20 text-red-300 rounded-full text-sm backdrop-blur-sm border border-red-500/30">Boss 挑战</span>
             </div>
 
             <!-- 操作按钮 -->
@@ -86,7 +85,7 @@
               <RouterLink to="/products" class="btn-primary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
                 了解详情
               </RouterLink>
-              <a :href="bloodfallTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
+              <a :href="eggSmashTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
                 前往 TapTap
               </a>
             </div>
@@ -132,5 +131,5 @@
 </template>
 
 <script setup lang="ts">
-const bloodfallTapTapUrl = 'https://l.taptap.cn/x0dHwsJY?channel=rep-rep_j9ktjgag7ko'
+const eggSmashTapTapUrl = 'https://tap.cn/Bdkma8m8'
 </script>
