@@ -5,8 +5,8 @@
       <!-- 游戏Banner背景 -->
       <div class="absolute inset-0">
         <img
-          src="/images/games/golden-egg-smash/banner.png"
-          alt="一锤子买卖游戏背景"
+          src="/images/games/perfect-cleaning-company/banner.png"
+          alt="完美清洁公司游戏背景"
           class="w-full h-full object-cover"
         >
         <!-- 渐变遮罩 -->
@@ -38,16 +38,16 @@
             <!-- 游戏标题 -->
             <div class="space-y-3 text-center lg:text-left">
               <div class="flex items-center justify-center lg:justify-start space-x-4">
-                <div class="w-16 h-16 rounded-xl overflow-hidden bg-amber-500/20 border border-amber-300/30">
+                <div class="w-16 h-16 rounded-xl overflow-hidden bg-emerald-500/20 border border-emerald-300/30">
                   <img
-                    src="/images/games/golden-egg-smash/logo.png"
-                    alt="一锤子买卖logo"
+                    src="/images/games/perfect-cleaning-company/logo.png"
+                    alt="完美清洁公司logo"
                     class="w-full h-full object-cover"
                   >
                 </div>
                 <div>
-                  <h2 class="text-3xl lg:text-4xl font-display font-bold gradient-text">一锤子买卖</h2>
-                  <p class="text-lg lg:text-xl text-white font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Golden Egg Smash</p>
+                  <h2 class="text-3xl lg:text-4xl font-display font-bold gradient-text">完美清洁公司</h2>
+                  <p class="text-lg lg:text-xl text-white font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Perfect Cleaning Company</p>
                 </div>
               </div>
 
@@ -58,7 +58,7 @@
 
                 <!-- 多平台发布标签 -->
                 <div class="flex gap-2 flex-wrap">
-                  <a :href="eggSmashTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
+                  <a :href="cleaningTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
                     <span class="text-xs">TapTap</span>
                   </a>
                 </div>
@@ -68,16 +68,16 @@
             <!-- 游戏描述 -->
             <div class="bg-black/60 backdrop-blur-lg border border-white/20 rounded-xl p-6 shadow-2xl">
               <p class="text-base lg:text-lg text-white leading-relaxed font-medium" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.9);">
-                轻松爽快的增量敲蛋成长游戏。组合不同锤子卡，击碎不断成长的金蛋，触发连锁伤害、特殊蛋与 Boss 挑战，在无尽模式中刷新伤害与财富记录。
+                轻松解压的休闲清洁经营游戏。接取不同场景的限时订单，擦除污渍、分类垃圾、整理物品并清洗衣物，努力达成完美清洁评价。
               </p>
             </div>
 
             <!-- 游戏特色标签 -->
             <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <span class="px-4 py-2 bg-amber-500/20 text-amber-300 rounded-full text-sm backdrop-blur-sm border border-amber-500/30">增量成长</span>
-              <span class="px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-full text-sm backdrop-blur-sm border border-yellow-500/30">锤子卡组合</span>
-              <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full text-sm backdrop-blur-sm border border-orange-500/30">连锁伤害</span>
-              <span class="px-4 py-2 bg-red-500/20 text-red-300 rounded-full text-sm backdrop-blur-sm border border-red-500/30">Boss 挑战</span>
+              <span class="px-4 py-2 bg-emerald-500/20 text-emerald-300 rounded-full text-sm backdrop-blur-sm border border-emerald-500/30">限时订单</span>
+              <span class="px-4 py-2 bg-cyan-500/20 text-cyan-300 rounded-full text-sm backdrop-blur-sm border border-cyan-500/30">解压清洁</span>
+              <span class="px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-full text-sm backdrop-blur-sm border border-yellow-500/30">工具升级</span>
+              <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm backdrop-blur-sm border border-blue-500/30">经营成长</span>
             </div>
 
             <!-- 操作按钮 -->
@@ -85,7 +85,7 @@
               <RouterLink to="/products" class="btn-primary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
                 了解详情
               </RouterLink>
-              <a :href="eggSmashTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
+              <a :href="cleaningTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
                 前往 TapTap
               </a>
             </div>
@@ -131,5 +131,5 @@
 </template>
 
 <script setup lang="ts">
-const eggSmashTapTapUrl = 'https://tap.cn/Bdkma8m8'
+const cleaningTapTapUrl = 'https://tap.cn/1xKUO9Cl'
 </script>

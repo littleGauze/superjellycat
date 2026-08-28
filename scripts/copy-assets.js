@@ -44,6 +44,11 @@ const assetMappings = [
     src: 'src/assets/images/games/golden-egg-smash',
     dest: 'public/images/games/golden-egg-smash'
   },
+  // 完美清洁公司图片
+  {
+    src: 'src/assets/images/games/perfect-cleaning-company',
+    dest: 'public/images/games/perfect-cleaning-company'
+  },
   // 工作室Logo
   {
     src: 'src/assets/images/superjellycat.png',
