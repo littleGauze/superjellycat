@@ -49,6 +49,11 @@ const assetMappings = [
     src: 'src/assets/images/games/perfect-cleaning-company',
     dest: 'public/images/games/perfect-cleaning-company'
   },
+  // 吃我一记脑瓜崩图片
+  {
+    src: 'src/assets/images/games/head-flick',
+    dest: 'public/images/games/head-flick'
+  },
   // 工作室Logo
   {
     src: 'src/assets/images/superjellycat.png',

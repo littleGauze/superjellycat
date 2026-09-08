@@ -5,8 +5,8 @@
       <!-- 游戏Banner背景 -->
       <div class="absolute inset-0">
         <img
-          src="/images/games/perfect-cleaning-company/banner.png"
-          alt="完美清洁公司游戏背景"
+          src="/images/games/head-flick/banner.png"
+          alt="吃我一记脑瓜崩游戏背景"
           class="w-full h-full object-cover"
         >
         <!-- 渐变遮罩 -->
@@ -38,16 +38,16 @@
             <!-- 游戏标题 -->
             <div class="space-y-3 text-center lg:text-left">
               <div class="flex items-center justify-center lg:justify-start space-x-4">
-                <div class="w-16 h-16 rounded-xl overflow-hidden bg-emerald-500/20 border border-emerald-300/30">
+                <div class="w-16 h-16 rounded-xl overflow-hidden bg-sky-500/20 border border-sky-300/30">
                   <img
-                    src="/images/games/perfect-cleaning-company/logo.png"
-                    alt="完美清洁公司logo"
+                    src="/images/games/head-flick/logo.png"
+                    alt="吃我一记脑瓜崩logo"
                     class="w-full h-full object-cover"
                   >
                 </div>
                 <div>
-                  <h2 class="text-3xl lg:text-4xl font-display font-bold gradient-text">完美清洁公司</h2>
-                  <p class="text-lg lg:text-xl text-white font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Perfect Cleaning Company</p>
+                  <h2 class="text-3xl lg:text-4xl font-display font-bold gradient-text">吃我一记脑瓜崩</h2>
+                  <p class="text-lg lg:text-xl text-white font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Head Flick</p>
                 </div>
               </div>
 
@@ -58,7 +58,13 @@
 
                 <!-- 多平台发布标签 -->
                 <div class="flex gap-2 flex-wrap">
-                  <a :href="cleaningTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
+                  <a
+                    :href="headFlickTapTapUrl || undefined"
+                    :target="headFlickTapTapUrl ? '_blank' : undefined"
+                    :rel="headFlickTapTapUrl ? 'noopener noreferrer' : undefined"
+                    class="platform-mini-btn bg-blue-500"
+                    :class="{ 'pointer-events-none opacity-60': !headFlickTapTapUrl }"
+                  >
                     <span class="text-xs">TapTap</span>
                   </a>
                 </div>
@@ -68,16 +74,16 @@
             <!-- 游戏描述 -->
             <div class="bg-black/60 backdrop-blur-lg border border-white/20 rounded-xl p-6 shadow-2xl">
               <p class="text-base lg:text-lg text-white leading-relaxed font-medium" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.9);">
-                轻松解压的休闲清洁经营游戏。接取不同场景的限时订单，擦除污渍、分类垃圾、整理物品并清洗衣物，努力达成完美清洁评价。
+                搞笑爽快的动作肉鸽游戏。操控蓝衣少年在怪物包围中移动、蓄力、弹指，把敌人狠狠弹飞，搭配撞墙、互撞与连锁爆炸清场。
               </p>
             </div>
 
             <!-- 游戏特色标签 -->
             <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <span class="px-4 py-2 bg-emerald-500/20 text-emerald-300 rounded-full text-sm backdrop-blur-sm border border-emerald-500/30">限时订单</span>
-              <span class="px-4 py-2 bg-cyan-500/20 text-cyan-300 rounded-full text-sm backdrop-blur-sm border border-cyan-500/30">解压清洁</span>
-              <span class="px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-full text-sm backdrop-blur-sm border border-yellow-500/30">工具升级</span>
-              <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm backdrop-blur-sm border border-blue-500/30">经营成长</span>
+              <span class="px-4 py-2 bg-sky-500/20 text-sky-300 rounded-full text-sm backdrop-blur-sm border border-sky-500/30">动作肉鸽</span>
+              <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm backdrop-blur-sm border border-blue-500/30">蓄力弹指</span>
+              <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full text-sm backdrop-blur-sm border border-orange-500/30">连锁爆炸</span>
+              <span class="px-4 py-2 bg-red-500/20 text-red-300 rounded-full text-sm backdrop-blur-sm border border-red-500/30">Boss 挑战</span>
             </div>
 
             <!-- 操作按钮 -->
@@ -85,9 +91,21 @@
               <RouterLink to="/products" class="btn-primary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
                 了解详情
               </RouterLink>
-              <a :href="cleaningTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl">
+              <a
+                v-if="headFlickTapTapUrl"
+                :href="headFlickTapTapUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl"
+              >
                 前往 TapTap
               </a>
+              <span
+                v-else
+                class="btn-secondary text-lg px-8 py-4 shadow-xl opacity-60 cursor-not-allowed"
+              >
+                前往 TapTap
+              </span>
             </div>
           </div>
         </div>
@@ -131,5 +149,5 @@
 </template>
 
 <script setup lang="ts">
-const cleaningTapTapUrl = 'https://tap.cn/1xKUO9Cl'
+const headFlickTapTapUrl = 'https://tap.cn/mhHzvW1d'
 </script>

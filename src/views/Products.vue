@@ -1,10 +1,162 @@
 <template>
   <div class="grid-background">
-    <!-- 完美清洁公司展示 -->
+    <!-- 吃我一记脑瓜崩展示 -->
     <section class="hero-section">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div class="relative order-2 lg:order-1">
+            <div class="space-y-6">
+              <div class="relative">
+                <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
+                  <img
+                    :src="currentHeadFlickImage.image"
+                    :alt="currentHeadFlickImage.title"
+                    class="w-full h-full transition-all duration-500"
+                    :class="currentHeadFlickImage.portrait ? 'object-contain' : 'object-cover'"
+                  >
+                  <div class="absolute inset-0 bg-gradient-to-br from-black/10 to-black/40 pointer-events-none"></div>
+                  <div class="absolute bottom-4 left-4 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
+                    <p class="text-white text-sm font-medium">{{ currentHeadFlickImage.title }}</p>
+                  </div>
+
+                  <!-- 视频播放按钮（宣传片待上传：public/video/head-flick.mp4） -->
+                  <div class="absolute bottom-6 right-6">
+                    <button
+                      @click="playVideo(headFlickVideoUrl)"
+                      class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 group"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative">
+                <div
+                  class="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
+                  ref="headFlickThumbnailContainer"
+                >
+                  <div
+                    v-for="(image, index) in headFlickImages"
+                    :key="image.image"
+                    @click="selectHeadFlickImage(index)"
+                    class="flex-shrink-0 cursor-pointer group"
+                    :class="{ 'ring-2 ring-jelly-400': currentHeadFlickImageIndex === index }"
+                  >
+                    <div
+                      class="rounded-lg overflow-hidden bg-gray-800"
+                      :class="image.portrait ? 'w-16 h-28' : 'w-28 h-16'"
+                    >
+                      <img
+                        :src="image.image"
+                        :alt="image.title"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex justify-center mt-4 space-x-2">
+                  <button
+                    v-for="(_, index) in headFlickImages"
+                    :key="index"
+                    @click="selectHeadFlickImage(index)"
+                    class="w-2 h-2 rounded-full transition-all duration-300"
+                    :class="currentHeadFlickImageIndex === index ? 'bg-jelly-400 w-6' : 'bg-gray-600'"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-1 lg:order-2 space-y-8">
+            <div class="space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
+                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a
+                    :href="headFlickTapTapUrl || undefined"
+                    :target="headFlickTapTapUrl ? '_blank' : undefined"
+                    :rel="headFlickTapTapUrl ? 'noopener noreferrer' : undefined"
+                    class="platform-mini-btn bg-blue-500"
+                    :class="{ 'pointer-events-none opacity-60': !headFlickTapTapUrl }"
+                  >
+                    <span class="text-xs">TapTap</span>
+                  </a>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-20 h-20 rounded-2xl overflow-hidden bg-gray-900/70 border border-white/10 shadow-xl">
+                  <img
+                    src="/images/games/head-flick/logo.png"
+                    alt="吃我一记脑瓜崩logo"
+                    class="w-full h-full object-cover"
+                  >
+                </div>
+                <div>
+                  <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
+                    <span class="gradient-text">吃我一记脑瓜崩</span>
+                  </h1>
+                  <p class="text-xl text-gray-300 font-medium">Head Flick</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <p class="text-lg text-gray-300 leading-relaxed">
+                《吃我一记脑瓜崩》是一款搞笑爽快的动作肉鸽游戏。操控蓝衣少年在怪物包围中移动、蓄力、弹指，把敌人狠狠弹飞！利用撞墙、敌人互撞与连锁爆炸清场，搭配随机强化技能，挑战越来越凶的精英与 Boss。
+              </p>
+
+              <div class="space-y-3">
+                <div
+                  v-for="item in headFlickSystems"
+                  :key="item"
+                  class="flex items-center space-x-3"
+                >
+                  <div class="w-2 h-2 bg-jelly-400 rounded-full"></div>
+                  <span class="text-gray-300">{{ item }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                v-if="headFlickTapTapUrl"
+                :href="headFlickTapTapUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary text-lg px-8 py-4"
+              >
+                前往 TapTap
+              </a>
+              <span
+                v-else
+                class="btn-primary text-lg px-8 py-4 opacity-60 cursor-not-allowed"
+              >
+                前往 TapTap
+              </span>
+              <button @click="playVideo(headFlickVideoUrl)" class="btn-secondary text-lg px-8 py-4">
+                观看宣传片
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 完美清洁公司展示 -->
+    <section class="section-spacing">
+      <div class="container-max">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -75,11 +227,11 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
-                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                  <span class="text-jelly-400 font-medium text-sm">现已发布</span>
                 </div>
                 <div class="flex gap-2 flex-wrap">
                   <a :href="cleaningTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
@@ -135,10 +287,10 @@
     </section>
 
     <!-- 一锤子买卖展示 -->
-    <section class="hero-section">
+    <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -209,11 +361,11 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
-                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                  <span class="text-jelly-400 font-medium text-sm">现已发布</span>
                 </div>
                 <div class="flex gap-2 flex-wrap">
                   <a :href="eggSmashTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
@@ -276,8 +428,8 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <!-- 右侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-1">
+          <!-- 左侧：游戏画廊区域 -->
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -344,8 +496,8 @@
             </div>
           </div>
 
-          <!-- 左侧：游戏信息区域 -->
-          <div class="order-1 lg:order-2 space-y-8">
+          <!-- 右侧：游戏信息区域 -->
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -412,7 +564,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -483,7 +635,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -550,7 +702,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-1">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -605,7 +757,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -672,8 +824,8 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <!-- 左侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-2">
+          <!-- 右侧：游戏画廊区域 -->
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <!-- 主图展示 -->
               <div class="relative">
@@ -738,8 +890,8 @@
             </div>
           </div>
 
-          <!-- 右侧：游戏信息区域 -->
-          <div class="order-1 lg:order-1 space-y-8">
+          <!-- 左侧：游戏信息区域 -->
+          <div class="order-1 lg:order-2 space-y-8">
             <!-- 游戏标题 -->
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -838,8 +990,8 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <!-- 右侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-1">
+          <!-- 左侧：游戏画廊区域 -->
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <!-- 主图展示 -->
               <div class="relative">
@@ -903,8 +1055,8 @@
             </div>
           </div>
 
-          <!-- 左侧：游戏信息区域 -->
-          <div class="order-1 lg:order-2 space-y-8">
+          <!-- 右侧：游戏信息区域 -->
+          <div class="order-1 lg:order-1 space-y-8">
             <!-- 游戏标题 -->
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -1008,7 +1160,7 @@
             加入我们的游戏世界，体验独特的冒险之旅
           </p>
           <div class="flex justify-center">
-            <a :href="cleaningTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">前往 TapTap</a>
+            <a :href="headFlickTapTapUrl || cleaningTapTapUrl" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg px-8 py-4">前往 TapTap</a>
           </div>
         </div>
       </div>
@@ -1066,6 +1218,8 @@ const bloodfallTapTapUrl = 'https://l.taptap.cn/x0dHwsJY?channel=rep-rep_j9ktjga
 const bloodfallVideoUrl = '/video/bloodfallDuo.mp4'
 const cleaningTapTapUrl = 'https://tap.cn/1xKUO9Cl'
 const cleaningVideoUrl = '/video/perfect-cleaning-company.mp4'
+const headFlickTapTapUrl = 'https://tap.cn/mhHzvW1d'
+const headFlickVideoUrl = '/video/head-flick.mp4'
 
 // 视频播放函数
 const playVideo = (videoSrc: string) => {
@@ -1079,6 +1233,37 @@ const closeVideoModal = () => {
   if (videoPlayer.value) {
     videoPlayer.value.pause()
   }
+}
+
+
+const headFlickSystems = [
+  '移动、蓄力、弹指，把敌人狠狠弹飞',
+  '利用撞墙、敌人互撞与连锁爆炸清场',
+  '搭配随机强化技能构筑更强打法',
+  '挑战越来越凶的精英与 Boss'
+]
+
+const headFlickImages = [
+  { title: '游戏 Banner', image: '/images/games/head-flick/banner.png', portrait: false },
+  { title: '蓄力弹指', image: '/images/games/head-flick/IMG_4878.PNG', portrait: true },
+  { title: '敌人弹飞', image: '/images/games/head-flick/IMG_4879.PNG', portrait: true },
+  { title: '撞墙清场', image: '/images/games/head-flick/IMG_4880.PNG', portrait: true },
+  { title: '互撞连锁', image: '/images/games/head-flick/IMG_4881.PNG', portrait: true },
+  { title: '爆炸连击', image: '/images/games/head-flick/IMG_4882.PNG', portrait: true },
+  { title: '随机强化', image: '/images/games/head-flick/IMG_4886.PNG', portrait: true },
+  { title: '精英挑战', image: '/images/games/head-flick/IMG_4887.PNG', portrait: true },
+  { title: 'Boss 对决', image: '/images/games/head-flick/IMG_4888.PNG', portrait: true },
+  { title: '肉鸽成长', image: '/images/games/head-flick/IMG_4889.PNG', portrait: true },
+  { title: '爽快连弹', image: '/images/games/head-flick/IMG_4890.PNG', portrait: true }
+]
+
+const currentHeadFlickImageIndex = ref(0)
+const headFlickThumbnailContainer = ref<HTMLElement>()
+const currentHeadFlickImage = computed(() => headFlickImages[currentHeadFlickImageIndex.value])
+
+const selectHeadFlickImage = (index: number) => {
+  currentHeadFlickImageIndex.value = index
+  nextTick(() => scrollThumbnailIntoView(headFlickThumbnailContainer.value, index))
 }
 
 const cleaningSystems = [
