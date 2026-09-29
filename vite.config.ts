@@ -24,5 +24,26 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
+    proxy: {
+      // 开发环境代理 TapTap Web API，供首页实时拉取评分
+      '/api/taptap': {
+        target: 'https://www.taptap.cn',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/taptap/, '/webapiv2'),
+        headers: {
+          Referer: 'https://www.taptap.cn/',
+        },
+      },
+      // 开发环境代理详情页 HTML，用于解析「热度」(download_count)
+      '/api/taptap-app': {
+        target: 'https://www.taptap.cn',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/taptap-app/, '/app'),
+        headers: {
+          Referer: 'https://www.taptap.cn/',
+          'User-Agent': 'Mozilla/5.0',
+        },
+      },
+    },
   },
 })

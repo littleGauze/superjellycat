@@ -54,6 +54,11 @@ const assetMappings = [
     src: 'src/assets/images/games/head-flick',
     dest: 'public/images/games/head-flick'
   },
+  // 这地毯能爆金币图片
+  {
+    src: 'src/assets/images/games/flip-coin',
+    dest: 'public/images/games/flip-coin'
+  },
   // 工作室Logo
   {
     src: 'src/assets/images/superjellycat.png',

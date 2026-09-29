@@ -4,14 +4,15 @@
   "type": "module",
   "description": "果冻猫侠工作室官网",
   "scripts": {
-    "predev": "node scripts/copy-assets.js",
+    "predev": "node scripts/copy-assets.js && node scripts/fetch-taptap-stats.js",
     "dev": "npm run predev && vite",
-    "prebuild": "node scripts/copy-assets.js",
+    "prebuild": "node scripts/copy-assets.js && node scripts/fetch-taptap-stats.js",
     "build": "npm run prebuild && vite build",
     "build:check": "npm run prebuild && vue-tsc && vite build",
     "preview": "vite preview",
     "type-check": "vue-tsc --noEmit",
-    "copy-assets": "node scripts/copy-assets.js"
+    "copy-assets": "node scripts/copy-assets.js",
+    "fetch-taptap-stats": "node scripts/fetch-taptap-stats.js"
   },
   "dependencies": {
     "@vueuse/core": "^10.7.0",

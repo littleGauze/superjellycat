@@ -11,5 +11,6 @@ declare module 'vue' {
     Header: typeof import('./src/components/Layout/Header.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TapTapStatsPills: typeof import('./src/components/TapTapStatsPills.vue')['default']
   }
 }

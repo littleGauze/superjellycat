@@ -1,10 +1,163 @@
 <template>
   <div class="grid-background">
-    <!-- 吃我一记脑瓜崩展示 -->
+    <!-- 这地毯能爆金币展示 -->
     <section class="hero-section">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div class="relative order-2 lg:order-1">
+            <div class="space-y-6">
+              <div class="relative">
+                <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
+                  <img
+                    :src="currentFlipCoinImage.image"
+                    :alt="currentFlipCoinImage.title"
+                    class="w-full h-full transition-all duration-500"
+                    :class="currentFlipCoinImage.portrait ? 'object-contain' : 'object-cover'"
+                  >
+                  <div class="absolute inset-0 bg-gradient-to-br from-black/10 to-black/40 pointer-events-none"></div>
+                  <div class="absolute bottom-4 left-4 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
+                    <p class="text-white text-sm font-medium">{{ currentFlipCoinImage.title }}</p>
+                  </div>
+
+                  <!-- 视频播放按钮（宣传片待上传：public/video/flip-coin.mp4） -->
+                  <div class="absolute bottom-6 right-6">
+                    <button
+                      @click="playVideo(flipCoinVideoUrl)"
+                      class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 group"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative">
+                <div
+                  class="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
+                  ref="flipCoinThumbnailContainer"
+                >
+                  <div
+                    v-for="(image, index) in flipCoinImages"
+                    :key="image.image"
+                    @click="selectFlipCoinImage(index)"
+                    class="flex-shrink-0 cursor-pointer group"
+                    :class="{ 'ring-2 ring-jelly-400': currentFlipCoinImageIndex === index }"
+                  >
+                    <div
+                      class="rounded-lg overflow-hidden bg-gray-800"
+                      :class="image.portrait ? 'w-16 h-28' : 'w-28 h-16'"
+                    >
+                      <img
+                        :src="image.image"
+                        :alt="image.title"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex justify-center mt-4 space-x-2">
+                  <button
+                    v-for="(_, index) in flipCoinImages"
+                    :key="index"
+                    @click="selectFlipCoinImage(index)"
+                    class="w-2 h-2 rounded-full transition-all duration-300"
+                    :class="currentFlipCoinImageIndex === index ? 'bg-jelly-400 w-6' : 'bg-gray-600'"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-1 lg:order-2 space-y-8">
+            <div class="space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
+                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a
+                    :href="flipCoinTapTapUrl || undefined"
+                    :target="flipCoinTapTapUrl ? '_blank' : undefined"
+                    :rel="flipCoinTapTapUrl ? 'noopener noreferrer' : undefined"
+                    class="platform-mini-btn bg-blue-500"
+                    :class="{ 'pointer-events-none opacity-60': !flipCoinTapTapUrl }"
+                  >
+                    <span class="text-xs">TapTap</span>
+                  </a>
+                  <TapTapStatsPills :rating="ratingText(942322)" :heat="heatText(942322)" />
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-20 h-20 rounded-2xl overflow-hidden bg-gray-900/70 border border-white/10 shadow-xl">
+                  <img
+                    src="/images/games/flip-coin/logo.png"
+                    alt="这地毯能爆金币logo"
+                    class="w-full h-full object-cover"
+                  >
+                </div>
+                <div>
+                  <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white leading-tight">
+                    <span class="gradient-text">这地毯能爆金币</span>
+                  </h1>
+                  <p class="text-xl text-gray-300 font-medium">Flip Coin</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <p class="text-lg text-gray-300 leading-relaxed">
+                《这地毯能爆金币》是一款轻松解压的竖屏像素风增量游戏。从一枚硬币开始，在神奇的魔毯上不断抛币、翻面、爆金币！赚到的钱可以购买更多硬币，雇佣兔兔、忍者、牛仔等员工，让他们帮你自动抛币、拾取金币。解锁不同魔毯、连锁翻币和各种强力技能，让满屋子的硬币越翻越快、金币越爆越多！打造属于你的全自动金币生产线，不断重生强化，开启下一轮疯狂暴富之旅！
+              </p>
+
+              <div class="space-y-3">
+                <div
+                  v-for="item in flipCoinSystems"
+                  :key="item"
+                  class="flex items-center space-x-3"
+                >
+                  <div class="w-2 h-2 bg-jelly-400 rounded-full"></div>
+                  <span class="text-gray-300">{{ item }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                v-if="flipCoinTapTapUrl"
+                :href="flipCoinTapTapUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary text-lg px-8 py-4"
+              >
+                前往 TapTap
+              </a>
+              <span
+                v-else
+                class="btn-primary text-lg px-8 py-4 opacity-60 cursor-not-allowed"
+              >
+                前往 TapTap
+              </span>
+              <button @click="playVideo(flipCoinVideoUrl)" class="btn-secondary text-lg px-8 py-4">
+                观看宣传片
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 吃我一记脑瓜崩展示 -->
+    <section class="section-spacing">
+      <div class="container-max">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -75,11 +228,11 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
-                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                  <span class="text-jelly-400 font-medium text-sm">现已发布</span>
                 </div>
                 <div class="flex gap-2 flex-wrap">
                   <a
@@ -91,6 +244,7 @@
                   >
                     <span class="text-xs">TapTap</span>
                   </a>
+                  <TapTapStatsPills :rating="ratingText(923121)" :heat="heatText(923121)" />
                 </div>
               </div>
               <div class="flex items-center gap-4">
@@ -156,7 +310,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -227,7 +381,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -237,6 +391,7 @@
                   <a :href="cleaningTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
                     <span class="text-xs">TapTap</span>
                   </a>
+                  <TapTapStatsPills :rating="ratingText(904067)" :heat="heatText(904067)" />
                 </div>
               </div>
               <div class="flex items-center gap-4">
@@ -290,7 +445,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-1">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -361,7 +516,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -371,6 +526,7 @@
                   <a :href="eggSmashTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
                     <span class="text-xs">TapTap</span>
                   </a>
+                  <TapTapStatsPills :rating="ratingText(910424)" :heat="heatText(910424)" />
                 </div>
               </div>
               <div class="flex items-center gap-4">
@@ -429,7 +585,7 @@
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <!-- 左侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -497,7 +653,7 @@
           </div>
 
           <!-- 右侧：游戏信息区域 -->
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -507,6 +663,7 @@
                   <a :href="bloodfallTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
                     <span class="text-xs">TapTap</span>
                   </a>
+                  <TapTapStatsPills :rating="ratingText(877529)" :heat="heatText(877529)" />
                 </div>
               </div>
               <div class="flex items-center gap-4">
@@ -564,7 +721,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-1">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -635,7 +792,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -645,6 +802,7 @@
                   <a :href="daggerTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
                     <span class="text-xs">TapTap</span>
                   </a>
+                  <TapTapStatsPills :rating="ratingText(872257)" :heat="heatText(872257)" />
                 </div>
               </div>
               <div class="flex items-center gap-4">
@@ -702,7 +860,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -757,7 +915,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -767,6 +925,7 @@
                   <a :href="earthDefenseTapTapUrl" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-blue-500">
                     <span class="text-xs">TapTap</span>
                   </a>
+                  <TapTapStatsPills :rating="ratingText(867574)" :heat="heatText(867574)" />
                 </div>
               </div>
               <div class="flex items-center gap-4">
@@ -825,7 +984,7 @@
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <!-- 右侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-1">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <!-- 主图展示 -->
               <div class="relative">
@@ -891,7 +1050,7 @@
           </div>
 
           <!-- 左侧：游戏信息区域 -->
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <!-- 游戏标题 -->
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -917,6 +1076,7 @@
                     <a href="#" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-purple-500">
                       <span class="text-xs">4399</span>
                     </a>
+                    <TapTapStatsPills :rating="ratingText(802340)" :heat="heatText(802340)" />
                   </div>
                 </div>
               </div>
@@ -991,7 +1151,7 @@
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <!-- 左侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <!-- 主图展示 -->
               <div class="relative">
@@ -1056,7 +1216,7 @@
           </div>
 
           <!-- 右侧：游戏信息区域 -->
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <!-- 游戏标题 -->
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -1079,6 +1239,7 @@
                   <a href="#" target="_blank" rel="noopener noreferrer" class="platform-mini-btn bg-purple-500">
                     <span class="text-xs">4399</span>
                   </a>
+                  <TapTapStatsPills :rating="ratingText(766679)" :heat="heatText(766679)" />
                 </div>
               </div>
               <h2 class="text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
@@ -1203,6 +1364,24 @@ import anglerSpringBattle from '@/assets/images/games/theisekaiangler/IMG_3827.P
 import anglerShop from '@/assets/images/games/theisekaiangler/IMG_3826.PNG'
 import anglerCards from '@/assets/images/games/theisekaiangler/IMG_3819.PNG'
 import anglerFishing from '@/assets/images/games/theisekaiangler/IMG_3807.PNG'
+import { allStudioGames } from '@/data/games'
+import { useTapTapStats } from '@/composables/useTapTapStats'
+import { formatHeatCount, formatTapScore } from '@/utils/taptap'
+
+const { getStat, loading: statsLoading } = useTapTapStats(allStudioGames)
+
+const ratingText = (appId: number) => {
+  const stat = getStat(appId)
+  if (!stat && statsLoading.value) return '评分加载中…'
+  return formatTapScore(stat?.score)
+}
+
+const heatText = (appId: number) => {
+  const stat = getStat(appId)
+  if (!stat && statsLoading.value) return '热度加载中…'
+  if (!stat) return '热度 --'
+  return formatHeatCount(stat.heatCount)
+}
 
 // 视频播放相关状态
 const showVideoModal = ref(false)
@@ -1220,6 +1399,8 @@ const cleaningTapTapUrl = 'https://tap.cn/1xKUO9Cl'
 const cleaningVideoUrl = '/video/perfect-cleaning-company.mp4'
 const headFlickTapTapUrl = 'https://tap.cn/mhHzvW1d'
 const headFlickVideoUrl = '/video/head-flick.mp4'
+const flipCoinTapTapUrl = 'https://tap.cn/xKXaAdUC'
+const flipCoinVideoUrl = '/video/flip-coin.mp4'
 
 // 视频播放函数
 const playVideo = (videoSrc: string) => {
@@ -1235,6 +1416,36 @@ const closeVideoModal = () => {
   }
 }
 
+
+const flipCoinSystems = [
+  '在魔毯上抛币、翻面、爆金币，开启暴富之旅',
+  '雇佣兔兔、忍者、牛仔等员工自动抛币拾取',
+  '解锁不同魔毯、连锁翻币与各种强力技能',
+  '重生强化，打造属于你的全自动金币生产线'
+]
+
+const flipCoinImages = [
+  { title: '游戏 Banner', image: '/images/games/flip-coin/banner.png', portrait: false },
+  { title: '开始界面', image: '/images/games/flip-coin/IMG_5011.PNG', portrait: true },
+  { title: '金币生产线', image: '/images/games/flip-coin/IMG_5012.PNG', portrait: true },
+  { title: '雇佣员工', image: '/images/games/flip-coin/IMG_5013.PNG', portrait: true },
+  { title: '升级强化', image: '/images/games/flip-coin/IMG_5014.PNG', portrait: true },
+  { title: '解锁魔毯', image: '/images/games/flip-coin/IMG_5015.PNG', portrait: true },
+  { title: '太极运势毯', image: '/images/games/flip-coin/IMG_5016.PNG', portrait: true },
+  { title: '抛币翻面', image: '/images/games/flip-coin/IMG_5017.PNG', portrait: true },
+  { title: '连锁爆金币', image: '/images/games/flip-coin/IMG_5018.PNG', portrait: true },
+  { title: '重生技能', image: '/images/games/flip-coin/IMG_5019.PNG', portrait: true },
+  { title: '重生技能树', image: '/images/games/flip-coin/IMG_5020.PNG', portrait: true }
+]
+
+const currentFlipCoinImageIndex = ref(0)
+const flipCoinThumbnailContainer = ref<HTMLElement>()
+const currentFlipCoinImage = computed(() => flipCoinImages[currentFlipCoinImageIndex.value])
+
+const selectFlipCoinImage = (index: number) => {
+  currentFlipCoinImageIndex.value = index
+  nextTick(() => scrollThumbnailIntoView(flipCoinThumbnailContainer.value, index))
+}
 
 const headFlickSystems = [
   '移动、蓄力、弹指，把敌人狠狠弹飞',
