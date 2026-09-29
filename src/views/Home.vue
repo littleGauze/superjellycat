@@ -215,7 +215,7 @@ import { hotGames, type StudioGame } from '@/data/games'
 import { useTapTapStats } from '@/composables/useTapTapStats'
 import { formatHeatCount, formatTapScore } from '@/utils/taptap'
 
-const flipCoinTapTapUrl = 'https://tap.cn/xKXaAdUC'
+const flipCoinTapTapUrl = 'https://tap.cn/RWuqb0Q9'
 const { getStat, loading: statsLoading } = useTapTapStats(hotGames)
 
 const activeHotIndex = ref(2)

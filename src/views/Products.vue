@@ -1399,7 +1399,7 @@ const cleaningTapTapUrl = 'https://tap.cn/1xKUO9Cl'
 const cleaningVideoUrl = '/video/perfect-cleaning-company.mp4'
 const headFlickTapTapUrl = 'https://tap.cn/mhHzvW1d'
 const headFlickVideoUrl = '/video/head-flick.mp4'
-const flipCoinTapTapUrl = 'https://tap.cn/xKXaAdUC'
+const flipCoinTapTapUrl = 'https://tap.cn/RWuqb0Q9'
 const flipCoinVideoUrl = '/video/flip-coin.mp4'
 
 // 视频播放函数
