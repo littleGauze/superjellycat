@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29T02:31:46.942Z",
+  "updatedAt": "2026-09-29T02:50:35.048Z",
   "success": 9,
   "total": 9,
   "games": {
@@ -11,7 +11,7 @@
       "heatCount": 14186,
       "fansCount": 11877,
       "reserveCount": 187,
-      "updatedAt": "2026-09-29T02:31:46.941Z"
+      "updatedAt": "2026-09-29T02:50:35.048Z"
     },
     "802340": {
       "appId": 802340,
@@ -21,7 +21,7 @@
       "heatCount": 4095,
       "fansCount": 3267,
       "reserveCount": 130,
-      "updatedAt": "2026-09-29T02:31:46.746Z"
+      "updatedAt": "2026-09-29T02:50:34.881Z"
     },
     "867574": {
       "appId": 867574,
@@ -31,7 +31,7 @@
       "heatCount": 5168,
       "fansCount": 4315,
       "reserveCount": 0,
-      "updatedAt": "2026-09-29T02:31:46.557Z"
+      "updatedAt": "2026-09-29T02:50:34.695Z"
     },
     "872257": {
       "appId": 872257,
@@ -41,7 +41,7 @@
       "heatCount": 8045,
       "fansCount": 6831,
       "reserveCount": 0,
-      "updatedAt": "2026-09-29T02:31:46.375Z"
+      "updatedAt": "2026-09-29T02:50:34.484Z"
     },
     "877529": {
       "appId": 877529,
@@ -51,37 +51,37 @@
       "heatCount": 1416,
       "fansCount": 1199,
       "reserveCount": 0,
-      "updatedAt": "2026-09-29T02:31:46.197Z"
+      "updatedAt": "2026-09-29T02:50:34.307Z"
     },
     "904067": {
       "appId": 904067,
       "title": "完美清洁公司",
       "score": 8.5,
       "reviewCount": 45,
-      "heatCount": 66917,
-      "fansCount": 61940,
+      "heatCount": 66927,
+      "fansCount": 61948,
       "reserveCount": 0,
-      "updatedAt": "2026-09-29T02:31:45.826Z"
+      "updatedAt": "2026-09-29T02:50:33.906Z"
     },
     "910424": {
       "appId": 910424,
       "title": "一锤子买卖",
       "score": 9,
       "reviewCount": 15,
-      "heatCount": 1593,
+      "heatCount": 1594,
       "fansCount": 1341,
       "reserveCount": 0,
-      "updatedAt": "2026-09-29T02:31:46.004Z"
+      "updatedAt": "2026-09-29T02:50:34.121Z"
     },
     "923121": {
       "appId": 923121,
       "title": "吃我一记脑瓜崩",
       "score": 9.5,
       "reviewCount": 6,
-      "heatCount": 688,
-      "fansCount": 687,
+      "heatCount": 689,
+      "fansCount": 688,
       "reserveCount": 2,
-      "updatedAt": "2026-09-29T02:31:45.638Z"
+      "updatedAt": "2026-09-29T02:50:33.689Z"
     },
     "942322": {
       "appId": 942322,
@@ -89,9 +89,9 @@
       "score": null,
       "reviewCount": 1,
       "heatCount": 0,
-      "fansCount": 57,
+      "fansCount": 59,
       "reserveCount": 16,
-      "updatedAt": "2026-09-29T02:31:45.453Z"
+      "updatedAt": "2026-09-29T02:50:33.454Z"
     },
     "flip-coin": {
       "appId": 942322,
@@ -99,39 +99,39 @@
       "score": null,
       "reviewCount": 1,
       "heatCount": 0,
-      "fansCount": 57,
+      "fansCount": 59,
       "reserveCount": 16,
-      "updatedAt": "2026-09-29T02:31:45.453Z"
+      "updatedAt": "2026-09-29T02:50:33.454Z"
     },
     "head-flick": {
       "appId": 923121,
       "title": "吃我一记脑瓜崩",
       "score": 9.5,
       "reviewCount": 6,
-      "heatCount": 688,
-      "fansCount": 687,
+      "heatCount": 689,
+      "fansCount": 688,
       "reserveCount": 2,
-      "updatedAt": "2026-09-29T02:31:45.638Z"
+      "updatedAt": "2026-09-29T02:50:33.689Z"
     },
     "cleaning": {
       "appId": 904067,
       "title": "完美清洁公司",
       "score": 8.5,
       "reviewCount": 45,
-      "heatCount": 66917,
-      "fansCount": 61940,
+      "heatCount": 66927,
+      "fansCount": 61948,
       "reserveCount": 0,
-      "updatedAt": "2026-09-29T02:31:45.826Z"
+      "updatedAt": "2026-09-29T02:50:33.906Z"
     },
     "egg-smash": {
       "appId": 910424,
       "title": "一锤子买卖",
       "score": 9,
       "reviewCount": 15,
-      "heatCount": 1593,
+      "heatCount": 1594,
       "fansCount": 1341,
       "reserveCount": 0,
-      "updatedAt": "2026-09-29T02:31:46.004Z"
+      "updatedAt": "2026-09-29T02:50:34.121Z"
     },
     "bloodfall": {
       "appId": 877529,
@@ -141,7 +141,7 @@
       "heatCount": 1416,
       "fansCount": 1199,
       "reserveCount": 0,
-      "updatedAt": "2026-09-29T02:31:46.197Z"
+      "updatedAt": "2026-09-29T02:50:34.307Z"
     },
     "dagger": {
       "appId": 872257,
@@ -151,7 +151,7 @@
       "heatCount": 8045,
       "fansCount": 6831,
       "reserveCount": 0,
-      "updatedAt": "2026-09-29T02:31:46.375Z"
+      "updatedAt": "2026-09-29T02:50:34.484Z"
     },
     "earth-defense": {
       "appId": 867574,
@@ -161,7 +161,7 @@
       "heatCount": 5168,
       "fansCount": 4315,
       "reserveCount": 0,
-      "updatedAt": "2026-09-29T02:31:46.557Z"
+      "updatedAt": "2026-09-29T02:50:34.695Z"
     },
     "angler": {
       "appId": 802340,
@@ -171,7 +171,7 @@
       "heatCount": 4095,
       "fansCount": 3267,
       "reserveCount": 130,
-      "updatedAt": "2026-09-29T02:31:46.746Z"
+      "updatedAt": "2026-09-29T02:50:34.881Z"
     },
     "swordmaster": {
       "appId": 766679,
@@ -181,7 +181,7 @@
       "heatCount": 14186,
       "fansCount": 11877,
       "reserveCount": 187,
-      "updatedAt": "2026-09-29T02:31:46.941Z"
+      "updatedAt": "2026-09-29T02:50:35.048Z"
     }
   }
 }
