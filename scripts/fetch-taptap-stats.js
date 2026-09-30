@@ -14,7 +14,7 @@ const TAP_XUA = encodeURIComponent(
 
 /** 与 src/data/games.ts 保持同步 */
 const games = [
-  { id: 'flip-coin', appId: 942322, title: '这地毯能爆金币' },
+  { id: 'flip-coin', appId: 942322, title: '我家地毯会爆金币' },
   { id: 'head-flick', appId: 923121, title: '吃我一记脑瓜崩' },
   { id: 'cleaning', appId: 904067, title: '完美清洁公司' },
   { id: 'egg-smash', appId: 910424, title: '一锤子买卖' },

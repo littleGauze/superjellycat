@@ -6,7 +6,7 @@
       <div class="absolute inset-0">
         <img
           src="/images/games/flip-coin/banner.png"
-          alt="这地毯能爆金币游戏背景"
+          alt="我家地毯会爆金币游戏背景"
           class="w-full h-full object-cover"
         >
         <!-- 渐变遮罩 -->
@@ -41,12 +41,12 @@
                 <div class="w-16 h-16 rounded-xl overflow-hidden bg-amber-500/20 border border-amber-300/30">
                   <img
                     src="/images/games/flip-coin/logo.png"
-                    alt="这地毯能爆金币logo"
+                    alt="我家地毯会爆金币logo"
                     class="w-full h-full object-cover"
                   >
                 </div>
                 <div>
-                  <h2 class="text-2xl sm:text-3xl lg:text-4xl font-display font-bold gradient-text">这地毯能爆金币</h2>
+                  <h2 class="text-2xl sm:text-3xl lg:text-4xl font-display font-bold gradient-text">我家地毯会爆金币</h2>
                   <p class="text-lg lg:text-xl text-white font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Flip Coin</p>
                 </div>
               </div>

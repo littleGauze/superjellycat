@@ -1,6 +1,6 @@
 <template>
   <div class="grid-background">
-    <!-- 这地毯能爆金币展示 -->
+    <!-- 我家地毯会爆金币展示 -->
     <section class="hero-section">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -98,13 +98,13 @@
                 <div class="w-20 h-20 rounded-2xl overflow-hidden bg-gray-900/70 border border-white/10 shadow-xl">
                   <img
                     src="/images/games/flip-coin/logo.png"
-                    alt="这地毯能爆金币logo"
+                    alt="我家地毯会爆金币logo"
                     class="w-full h-full object-cover"
                   >
                 </div>
                 <div>
                   <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white leading-tight">
-                    <span class="gradient-text">这地毯能爆金币</span>
+                    <span class="gradient-text">我家地毯会爆金币</span>
                   </h1>
                   <p class="text-xl text-gray-300 font-medium">Flip Coin</p>
                 </div>
@@ -113,7 +113,7 @@
 
             <div class="space-y-4">
               <p class="text-lg text-gray-300 leading-relaxed">
-                《这地毯能爆金币》是一款轻松解压的竖屏像素风增量游戏。从一枚硬币开始，在神奇的魔毯上不断抛币、翻面、爆金币！赚到的钱可以购买更多硬币，雇佣兔兔、忍者、牛仔等员工，让他们帮你自动抛币、拾取金币。解锁不同魔毯、连锁翻币和各种强力技能，让满屋子的硬币越翻越快、金币越爆越多！打造属于你的全自动金币生产线，不断重生强化，开启下一轮疯狂暴富之旅！
+                《我家地毯会爆金币》是一款轻松解压的竖屏像素风增量游戏。从一枚硬币开始，在神奇的魔毯上不断抛币、翻面、爆金币！赚到的钱可以购买更多硬币，雇佣兔兔、忍者、牛仔等员工，让他们帮你自动抛币、拾取金币。解锁不同魔毯、连锁翻币和各种强力技能，让满屋子的硬币越翻越快、金币越爆越多！打造属于你的全自动金币生产线，不断重生强化，开启下一轮疯狂暴富之旅！
               </p>
 
               <div class="space-y-3">

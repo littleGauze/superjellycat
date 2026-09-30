@@ -28,7 +28,7 @@ export const hotGames: StudioGame[] = [
   },
   {
     id: 'flip-coin',
-    title: '这地毯能爆金币',
+    title: '我家地毯会爆金币',
     cover: '/images/games/flip-coin/logo.png',
     url: 'https://tap.cn/RWuqb0Q9',
     appId: 942322,
