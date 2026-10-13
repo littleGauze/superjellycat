@@ -19,6 +19,23 @@ export const hotGames: StudioGame[] = [
     tagline: '轻松解压 · 清洁经营'
   },
   {
+    id: 'flip-coin',
+    title: '我家地毯会爆金币',
+    cover: '/images/games/flip-coin/logo.png',
+    url: 'https://tap.cn/RWuqb0Q9',
+    appId: 942322,
+    tagline: '像素增量 · 抛币爆金'
+  },
+  {
+    id: 'rebirth-cell',
+    title: '重生随机细胞',
+    cover: '/images/games/rebirth-cell/logo.png',
+    url: 'https://tap.cn/PolYuF4z',
+    appId: 954572,
+    hot: true,
+    tagline: '丑萌进化 · 身体即武器'
+  },
+  {
     id: 'head-flick',
     title: '吃我一记脑瓜崩',
     cover: '/images/games/head-flick/logo.png',
@@ -27,22 +44,18 @@ export const hotGames: StudioGame[] = [
     tagline: '动作肉鸽 · 爽快弹指'
   },
   {
-    id: 'flip-coin',
-    title: '我家地毯会爆金币',
-    cover: '/images/games/flip-coin/logo.png',
-    url: 'https://tap.cn/RWuqb0Q9',
-    appId: 942322,
-    hot: true,
-    tagline: '像素增量 · 抛币爆金'
-  },
-  {
     id: 'egg-smash',
     title: '一锤子买卖',
     cover: '/images/games/golden-egg-smash/logo.png',
     url: 'https://tap.cn/Bdkma8m8',
     appId: 910424,
     tagline: '敲蛋成长 · 连锁伤害'
-  },
+  }
+]
+
+/** 全站游戏（构建脚本也会用这份映射） */
+export const allStudioGames: StudioGame[] = [
+  ...hotGames,
   {
     id: 'bloodfall',
     title: '末日喋血双雄',
@@ -50,12 +63,7 @@ export const hotGames: StudioGame[] = [
     url: 'https://l.taptap.cn/x0dHwsJY?channel=rep-rep_j9ktjgag7ko',
     appId: 877529,
     tagline: '双人求生 · 昼夜尸潮'
-  }
-]
-
-/** 全站游戏（构建脚本也会用这份映射） */
-export const allStudioGames: StudioGame[] = [
-  ...hotGames,
+  },
   {
     id: 'dagger',
     title: '弑神匕首',

@@ -14,6 +14,7 @@ const TAP_XUA = encodeURIComponent(
 
 /** 与 src/data/games.ts 保持同步 */
 const games = [
+  { id: 'rebirth-cell', appId: 954572, title: '重生随机细胞' },
   { id: 'flip-coin', appId: 942322, title: '我家地毯会爆金币' },
   { id: 'head-flick', appId: 923121, title: '吃我一记脑瓜崩' },
   { id: 'cleaning', appId: 904067, title: '完美清洁公司' },

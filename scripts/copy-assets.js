@@ -59,6 +59,11 @@ const assetMappings = [
     src: 'src/assets/images/games/flip-coin',
     dest: 'public/images/games/flip-coin'
   },
+  // 重生随机细胞图片
+  {
+    src: 'src/assets/images/games/rebirth-cell',
+    dest: 'public/images/games/rebirth-cell'
+  },
   // 工作室Logo
   {
     src: 'src/assets/images/superjellycat.png',

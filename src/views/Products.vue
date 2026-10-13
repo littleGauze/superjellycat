@@ -1,10 +1,163 @@
 <template>
   <div class="grid-background">
-    <!-- 我家地毯会爆金币展示 -->
+    <!-- 重生随机细胞展示 -->
     <section class="hero-section">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div class="relative order-2 lg:order-1">
+            <div class="space-y-6">
+              <div class="relative">
+                <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
+                  <img
+                    :src="currentRebirthCellImage.image"
+                    :alt="currentRebirthCellImage.title"
+                    class="w-full h-full transition-all duration-500"
+                    :class="currentRebirthCellImage.portrait ? 'object-contain' : 'object-cover'"
+                  >
+                  <div class="absolute inset-0 bg-gradient-to-br from-black/10 to-black/40 pointer-events-none"></div>
+                  <div class="absolute bottom-4 left-4 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
+                    <p class="text-white text-sm font-medium">{{ currentRebirthCellImage.title }}</p>
+                  </div>
+
+                  <!-- 视频播放按钮（宣传片待上传：public/video/rebirth-cell.mp4） -->
+                  <div class="absolute bottom-6 right-6">
+                    <button
+                      @click="playVideo(rebirthCellVideoUrl)"
+                      class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 group"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative">
+                <div
+                  class="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
+                  ref="rebirthCellThumbnailContainer"
+                >
+                  <div
+                    v-for="(image, index) in rebirthCellImages"
+                    :key="image.image"
+                    @click="selectRebirthCellImage(index)"
+                    class="flex-shrink-0 cursor-pointer group"
+                    :class="{ 'ring-2 ring-jelly-400': currentRebirthCellImageIndex === index }"
+                  >
+                    <div
+                      class="rounded-lg overflow-hidden bg-gray-800"
+                      :class="image.portrait ? 'w-16 h-28' : 'w-28 h-16'"
+                    >
+                      <img
+                        :src="image.image"
+                        :alt="image.title"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex justify-center mt-4 space-x-2">
+                  <button
+                    v-for="(_, index) in rebirthCellImages"
+                    :key="index"
+                    @click="selectRebirthCellImage(index)"
+                    class="w-2 h-2 rounded-full transition-all duration-300"
+                    :class="currentRebirthCellImageIndex === index ? 'bg-jelly-400 w-6' : 'bg-gray-600'"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-1 lg:order-2 space-y-8">
+            <div class="space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
+                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a
+                    :href="rebirthCellTapTapUrl || undefined"
+                    :target="rebirthCellTapTapUrl ? '_blank' : undefined"
+                    :rel="rebirthCellTapTapUrl ? 'noopener noreferrer' : undefined"
+                    class="platform-mini-btn bg-blue-500"
+                    :class="{ 'pointer-events-none opacity-60': !rebirthCellTapTapUrl }"
+                  >
+                    <span class="text-xs">TapTap</span>
+                  </a>
+                  <TapTapStatsPills :rating="ratingText(954572)" :heat="heatText(954572)" />
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-20 h-20 rounded-2xl overflow-hidden bg-gray-900/70 border border-white/10 shadow-xl">
+                  <img
+                    src="/images/games/rebirth-cell/logo.png"
+                    alt="重生随机细胞logo"
+                    class="w-full h-full object-cover"
+                  >
+                </div>
+                <div>
+                  <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white leading-tight">
+                    <span class="gradient-text">重生随机细胞</span>
+                  </h1>
+                  <p class="text-xl text-gray-300 font-medium">Rebirth Cell</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <p class="text-lg text-gray-300 leading-relaxed">
+                《重生随机细胞》是一款丑萌画风的生物进化动作冒险游戏。你将从一个微小的细胞开始，在捕食、探索与战斗中不断成长，进化出属于自己的奇妙生命。自由组合巨口、利爪、毒刺、电囊、触手和甲壳，让身体与战斗方式一同改变。潜入幽暗深海，跃出水面捕食飞行生物，或长出双脚踏上陆地，探索不同的生态环境。面对结群狩猎的变异动物和拥有二阶段招式的巨型 Boss，灵活冲刺、施展专属技能，甚至引诱首领撞碎巨石，创造反击机会。每一次进化，都会长出新的可能。
+              </p>
+
+              <div class="space-y-3">
+                <div
+                  v-for="item in rebirthCellSystems"
+                  :key="item"
+                  class="flex items-center space-x-3"
+                >
+                  <div class="w-2 h-2 bg-jelly-400 rounded-full"></div>
+                  <span class="text-gray-300">{{ item }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                v-if="rebirthCellTapTapUrl"
+                :href="rebirthCellTapTapUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary text-lg px-8 py-4"
+              >
+                前往 TapTap
+              </a>
+              <span
+                v-else
+                class="btn-primary text-lg px-8 py-4 opacity-60 cursor-not-allowed"
+              >
+                前往 TapTap
+              </span>
+              <button @click="playVideo(rebirthCellVideoUrl)" class="btn-secondary text-lg px-8 py-4">
+                观看宣传片
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 我家地毯会爆金币展示 -->
+    <section class="section-spacing">
+      <div class="container-max">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -75,11 +228,11 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
-                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                  <span class="text-jelly-400 font-medium text-sm">现已发布</span>
                 </div>
                 <div class="flex gap-2 flex-wrap">
                   <a
@@ -157,7 +310,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -228,7 +381,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -310,7 +463,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-1">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -381,7 +534,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -445,7 +598,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -516,7 +669,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -585,7 +738,7 @@
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <!-- 左侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-1">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -653,7 +806,7 @@
           </div>
 
           <!-- 右侧：游戏信息区域 -->
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -721,7 +874,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -792,7 +945,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -860,7 +1013,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-1">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -915,7 +1068,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -984,7 +1137,7 @@
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <!-- 右侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <!-- 主图展示 -->
               <div class="relative">
@@ -1050,7 +1203,7 @@
           </div>
 
           <!-- 左侧：游戏信息区域 -->
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <!-- 游戏标题 -->
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -1151,7 +1304,7 @@
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <!-- 左侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-1">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <!-- 主图展示 -->
               <div class="relative">
@@ -1216,7 +1369,7 @@
           </div>
 
           <!-- 右侧：游戏信息区域 -->
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <!-- 游戏标题 -->
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -1399,6 +1552,8 @@ const cleaningTapTapUrl = 'https://tap.cn/1xKUO9Cl'
 const cleaningVideoUrl = '/video/perfect-cleaning-company.mp4'
 const headFlickTapTapUrl = 'https://tap.cn/mhHzvW1d'
 const headFlickVideoUrl = '/video/head-flick.mp4'
+const rebirthCellTapTapUrl = 'https://tap.cn/PolYuF4z'
+const rebirthCellVideoUrl = '/video/rebirth-cell.mp4'
 const flipCoinTapTapUrl = 'https://tap.cn/RWuqb0Q9'
 const flipCoinVideoUrl = '/video/flip-coin.mp4'
 
@@ -1416,6 +1571,37 @@ const closeVideoModal = () => {
   }
 }
 
+
+
+const rebirthCellSystems = [
+  '自由组合巨口、利爪、毒刺、电囊、触手与甲壳',
+  '潜入深海、跃出水面、踏上陆地探索多元生态',
+  '面对结群猎物与二阶段巨型 Boss，灵活冲刺反击',
+  '每一次进化，都会长出新的可能'
+]
+
+const rebirthCellImages = [
+  { title: '游戏 Banner', image: '/images/games/rebirth-cell/banner.png', portrait: false },
+  { title: '开始菜单', image: '/images/games/rebirth-cell/01.png', portrait: false },
+  { title: '珊瑚育苗湾', image: '/images/games/rebirth-cell/02.png', portrait: false },
+  { title: '巨口进化', image: '/images/games/rebirth-cell/03.png', portrait: false },
+  { title: '器官组合', image: '/images/games/rebirth-cell/04.png', portrait: false },
+  { title: '深海大鲨鱼', image: '/images/games/rebirth-cell/05.png', portrait: false },
+  { title: '水面捕食', image: '/images/games/rebirth-cell/06.png', portrait: false },
+  { title: '陆地行走', image: '/images/games/rebirth-cell/07.png', portrait: false },
+  { title: '古甲山龟', image: '/images/games/rebirth-cell/08.png', portrait: false },
+  { title: '雪山探索', image: '/images/games/rebirth-cell/09.png', portrait: false },
+  { title: '自由进化', image: '/images/games/rebirth-cell/10.png', portrait: false }
+]
+
+const currentRebirthCellImageIndex = ref(0)
+const rebirthCellThumbnailContainer = ref<HTMLElement>()
+const currentRebirthCellImage = computed(() => rebirthCellImages[currentRebirthCellImageIndex.value])
+
+const selectRebirthCellImage = (index: number) => {
+  currentRebirthCellImageIndex.value = index
+  nextTick(() => scrollThumbnailIntoView(rebirthCellThumbnailContainer.value, index))
+}
 
 const flipCoinSystems = [
   '在魔毯上抛币、翻面、爆金币，开启暴富之旅',

@@ -5,8 +5,8 @@
       <!-- 游戏Banner背景 -->
       <div class="absolute inset-0">
         <img
-          src="/images/games/flip-coin/banner.png"
-          alt="我家地毯会爆金币游戏背景"
+          src="/images/games/rebirth-cell/banner.png"
+          alt="重生随机细胞游戏背景"
           class="w-full h-full object-cover"
         >
         <!-- 渐变遮罩 -->
@@ -38,16 +38,16 @@
             <!-- 游戏标题 -->
             <div class="space-y-3 text-center lg:text-left">
               <div class="flex items-center justify-center lg:justify-start space-x-4">
-                <div class="w-16 h-16 rounded-xl overflow-hidden bg-amber-500/20 border border-amber-300/30">
+                <div class="w-16 h-16 rounded-xl overflow-hidden bg-cyan-500/20 border border-cyan-300/30">
                   <img
-                    src="/images/games/flip-coin/logo.png"
-                    alt="我家地毯会爆金币logo"
+                    src="/images/games/rebirth-cell/logo.png"
+                    alt="重生随机细胞logo"
                     class="w-full h-full object-cover"
                   >
                 </div>
                 <div>
-                  <h2 class="text-2xl sm:text-3xl lg:text-4xl font-display font-bold gradient-text">我家地毯会爆金币</h2>
-                  <p class="text-lg lg:text-xl text-white font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Flip Coin</p>
+                  <h2 class="text-2xl sm:text-3xl lg:text-4xl font-display font-bold gradient-text">重生随机细胞</h2>
+                  <p class="text-lg lg:text-xl text-white font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Rebirth Cell</p>
                 </div>
               </div>
 
@@ -59,11 +59,11 @@
                 <!-- 多平台发布标签 -->
                 <div class="flex gap-2 flex-wrap">
                   <a
-                    :href="flipCoinTapTapUrl || undefined"
-                    :target="flipCoinTapTapUrl ? '_blank' : undefined"
-                    :rel="flipCoinTapTapUrl ? 'noopener noreferrer' : undefined"
+                    :href="rebirthCellTapTapUrl || undefined"
+                    :target="rebirthCellTapTapUrl ? '_blank' : undefined"
+                    :rel="rebirthCellTapTapUrl ? 'noopener noreferrer' : undefined"
                     class="platform-mini-btn bg-blue-500"
-                    :class="{ 'pointer-events-none opacity-60': !flipCoinTapTapUrl }"
+                    :class="{ 'pointer-events-none opacity-60': !rebirthCellTapTapUrl }"
                   >
                     <span class="text-xs">TapTap</span>
                   </a>
@@ -74,16 +74,16 @@
             <!-- 游戏描述 -->
             <div class="bg-black/60 backdrop-blur-lg border border-white/20 rounded-xl p-6 shadow-2xl">
               <p class="text-base lg:text-lg text-white leading-relaxed font-medium" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.9);">
-                轻松解压的竖屏像素风增量游戏。从一枚硬币开始，在神奇魔毯上抛币、翻面、爆金币，雇佣员工打造全自动金币生产线！
+                丑萌画风的生物进化动作冒险。从微小细胞起步，自由组合巨口、利爪、毒刺与触手，潜入深海、跃出水面、踏上陆地，进化出属于自己的奇妙生命！
               </p>
             </div>
 
             <!-- 游戏特色标签 -->
             <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <span class="px-4 py-2 bg-amber-500/20 text-amber-300 rounded-full text-sm backdrop-blur-sm border border-amber-500/30">像素增量</span>
-              <span class="px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-full text-sm backdrop-blur-sm border border-yellow-500/30">抛币爆金</span>
-              <span class="px-4 py-2 bg-red-500/20 text-red-300 rounded-full text-sm backdrop-blur-sm border border-red-500/30">魔毯收集</span>
-              <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full text-sm backdrop-blur-sm border border-orange-500/30">重生强化</span>
+              <span class="px-4 py-2 bg-cyan-500/20 text-cyan-300 rounded-full text-sm backdrop-blur-sm border border-cyan-500/30">丑萌进化</span>
+              <span class="px-4 py-2 bg-teal-500/20 text-teal-300 rounded-full text-sm backdrop-blur-sm border border-teal-500/30">身体即武器</span>
+              <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm backdrop-blur-sm border border-blue-500/30">深海陆地</span>
+              <span class="px-4 py-2 bg-indigo-500/20 text-indigo-300 rounded-full text-sm backdrop-blur-sm border border-indigo-500/30">Roguelike</span>
             </div>
 
             <!-- 操作按钮 -->
@@ -92,8 +92,8 @@
                 了解详情
               </RouterLink>
               <a
-                v-if="flipCoinTapTapUrl"
-                :href="flipCoinTapTapUrl"
+                v-if="rebirthCellTapTapUrl"
+                :href="rebirthCellTapTapUrl"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl"
@@ -215,7 +215,7 @@ import { hotGames, type StudioGame } from '@/data/games'
 import { useTapTapStats } from '@/composables/useTapTapStats'
 import { formatHeatCount, formatTapScore } from '@/utils/taptap'
 
-const flipCoinTapTapUrl = 'https://tap.cn/RWuqb0Q9'
+const rebirthCellTapTapUrl = 'https://tap.cn/PolYuF4z'
 const { getStat, loading: statsLoading } = useTapTapStats(hotGames)
 
 const activeHotIndex = ref(2)
