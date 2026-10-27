@@ -64,6 +64,12 @@ const assetMappings = [
     src: 'src/assets/images/games/rebirth-cell',
     dest: 'public/images/games/rebirth-cell'
   },
+  // 人类最后一颗脑瓜图片
+  {
+    src: 'src/assets/images/games/last-brain',
+    dest: 'public/images/games/last-brain'
+  },
+
   // 工作室Logo
   {
     src: 'src/assets/images/superjellycat.png',

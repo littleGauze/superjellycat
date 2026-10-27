@@ -1,10 +1,162 @@
 <template>
   <div class="grid-background">
-    <!-- 重生随机细胞展示 -->
+    <!-- 人类最后一颗脑瓜展示 -->
     <section class="hero-section">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div class="relative order-2 lg:order-1">
+            <div class="space-y-6">
+              <div class="relative">
+                <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
+                  <img
+                    :src="currentLastBrainImage.image"
+                    :alt="currentLastBrainImage.title"
+                    class="w-full h-full transition-all duration-500"
+                    :class="currentLastBrainImage.portrait ? 'object-contain' : 'object-cover'"
+                  >
+                  <div class="absolute inset-0 bg-gradient-to-br from-black/10 to-black/40 pointer-events-none"></div>
+                  <div class="absolute bottom-4 left-4 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg">
+                    <p class="text-white text-sm font-medium">{{ currentLastBrainImage.title }}</p>
+                  </div>
+
+                  <div class="absolute bottom-6 right-6">
+                    <button
+                      @click="playVideo(lastBrainVideoUrl)"
+                      class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 group"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative">
+                <div
+                  class="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
+                  ref="lastBrainThumbnailContainer"
+                >
+                  <div
+                    v-for="(image, index) in lastBrainImages"
+                    :key="image.image"
+                    @click="selectLastBrainImage(index)"
+                    class="flex-shrink-0 cursor-pointer group"
+                    :class="{ 'ring-2 ring-jelly-400': currentLastBrainImageIndex === index }"
+                  >
+                    <div
+                      class="rounded-lg overflow-hidden bg-gray-800"
+                      :class="image.portrait ? 'w-16 h-28' : 'w-28 h-16'"
+                    >
+                      <img
+                        :src="image.image"
+                        :alt="image.title"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex justify-center mt-4 space-x-2">
+                  <button
+                    v-for="(_, index) in lastBrainImages"
+                    :key="index"
+                    @click="selectLastBrainImage(index)"
+                    class="w-2 h-2 rounded-full transition-all duration-300"
+                    :class="currentLastBrainImageIndex === index ? 'bg-jelly-400 w-6' : 'bg-gray-600'"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-1 lg:order-2 space-y-8">
+            <div class="space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
+                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a
+                    :href="lastBrainTapTapUrl || undefined"
+                    :target="lastBrainTapTapUrl ? '_blank' : undefined"
+                    :rel="lastBrainTapTapUrl ? 'noopener noreferrer' : undefined"
+                    class="platform-mini-btn bg-blue-500"
+                    :class="{ 'pointer-events-none opacity-60': !lastBrainTapTapUrl }"
+                  >
+                    <span class="text-xs">TapTap</span>
+                  </a>
+                  <TapTapStatsPills :rating="ratingText(969023)" :heat="heatText(969023)" />
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-20 h-20 rounded-2xl overflow-hidden bg-gray-900/70 border border-white/10 shadow-xl">
+                  <img
+                    src="/images/games/last-brain/logo.png"
+                    alt="人类最后一颗脑瓜logo"
+                    class="w-full h-full object-cover"
+                  >
+                </div>
+                <div>
+                  <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white leading-tight">
+                    <span class="gradient-text">人类最后一颗脑瓜</span>
+                  </h1>
+                  <p class="text-xl text-gray-300 font-medium">Last Brain</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <p class="text-lg text-gray-300 leading-relaxed">
+                丧尸占据了世界，而你的脑瓜仍在维生脑罐中保持清醒。你就是这颗脑瓜的主人，正在操控机器人作战、驾驶装甲车突围，为自己寻找一条逃生之路。《人类最后一颗脑瓜》是一款融合背包拼装与肉鸽战斗的生存游戏。拖动、旋转武器，搭配配件、扩展背包，为机器人拼出专属火力。通过升级三选一完善构筑，在随机路线中寻找补给、应对突发事件、突破首领封锁；或挑战无尽模式，看看你能在尸潮中逃出多远。
+              </p>
+
+              <div class="space-y-3">
+                <div
+                  v-for="item in lastBrainSystems"
+                  :key="item"
+                  class="flex items-center space-x-3"
+                >
+                  <div class="w-2 h-2 bg-jelly-400 rounded-full"></div>
+                  <span class="text-gray-300">{{ item }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                v-if="lastBrainTapTapUrl"
+                :href="lastBrainTapTapUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary text-lg px-8 py-4"
+              >
+                前往 TapTap
+              </a>
+              <span
+                v-else
+                class="btn-primary text-lg px-8 py-4 opacity-60 cursor-not-allowed"
+              >
+                前往 TapTap
+              </span>
+              <button @click="playVideo(lastBrainVideoUrl)" class="btn-secondary text-lg px-8 py-4">
+                观看宣传片
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 重生随机细胞展示 -->
+    <section class="section-spacing">
+      <div class="container-max">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -75,11 +227,11 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
-                  <span class="text-jelly-400 font-medium text-sm">最新发布</span>
+                  <span class="text-jelly-400 font-medium text-sm">现已发布</span>
                 </div>
                 <div class="flex gap-2 flex-wrap">
                   <a
@@ -157,7 +309,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -228,7 +380,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -310,7 +462,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-1">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -381,7 +533,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -463,7 +615,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -534,7 +686,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -598,7 +750,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-1">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -669,7 +821,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -738,7 +890,7 @@
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <!-- 左侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -806,7 +958,7 @@
           </div>
 
           <!-- 右侧：游戏信息区域 -->
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -874,7 +1026,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-1">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -945,7 +1097,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -1013,7 +1165,7 @@
     <section class="section-spacing">
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <div class="relative">
                 <div class="aspect-[16/9] rounded-2xl overflow-hidden relative max-h-[600px] bg-gray-900/70">
@@ -1068,7 +1220,7 @@
             </div>
           </div>
 
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div class="inline-block bg-jelly-500/20 px-3 py-1.5 rounded-full">
@@ -1137,7 +1289,7 @@
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <!-- 右侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-1">
+          <div class="relative order-2 lg:order-2">
             <div class="space-y-6">
               <!-- 主图展示 -->
               <div class="relative">
@@ -1203,7 +1355,7 @@
           </div>
 
           <!-- 左侧：游戏信息区域 -->
-          <div class="order-1 lg:order-2 space-y-8">
+          <div class="order-1 lg:order-1 space-y-8">
             <!-- 游戏标题 -->
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -1304,7 +1456,7 @@
       <div class="container-max">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <!-- 左侧：游戏画廊区域 -->
-          <div class="relative order-2 lg:order-2">
+          <div class="relative order-2 lg:order-1">
             <div class="space-y-6">
               <!-- 主图展示 -->
               <div class="relative">
@@ -1369,7 +1521,7 @@
           </div>
 
           <!-- 右侧：游戏信息区域 -->
-          <div class="order-1 lg:order-1 space-y-8">
+          <div class="order-1 lg:order-2 space-y-8">
             <!-- 游戏标题 -->
             <div class="space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -1552,6 +1704,8 @@ const cleaningTapTapUrl = 'https://tap.cn/1xKUO9Cl'
 const cleaningVideoUrl = '/video/perfect-cleaning-company.mp4'
 const headFlickTapTapUrl = 'https://tap.cn/mhHzvW1d'
 const headFlickVideoUrl = '/video/head-flick.mp4'
+const lastBrainTapTapUrl = 'https://tap.cn/GleXc5RA'
+const lastBrainVideoUrl = '/video/last-brain.mp4'
 const rebirthCellTapTapUrl = 'https://tap.cn/PolYuF4z'
 const rebirthCellVideoUrl = '/video/rebirth-cell.mp4'
 const flipCoinTapTapUrl = 'https://tap.cn/RWuqb0Q9'
@@ -1572,6 +1726,37 @@ const closeVideoModal = () => {
 }
 
 
+
+
+const lastBrainSystems = [
+  '拖动旋转武器，搭配配件扩展背包，拼出专属火力',
+  '升级三选一完善构筑，在随机路线中寻找补给',
+  '操控机器人作战、驾驶装甲车突围，突破首领封锁',
+  '挑战无尽模式，在尸潮中看看你能逃出多远'
+]
+
+const lastBrainImages = [
+  { title: '游戏 Banner', image: '/images/games/last-brain/banner.png', portrait: false },
+  { title: '开始菜单', image: '/images/games/last-brain/01.png', portrait: true },
+  { title: '装甲突围', image: '/images/games/last-brain/02.png', portrait: true },
+  { title: '路线地图', image: '/images/games/last-brain/03.png', portrait: true },
+  { title: '尸潮作战', image: '/images/games/last-brain/04.png', portrait: true },
+  { title: '肢解连击', image: '/images/games/last-brain/05.png', portrait: true },
+  { title: 'Boss 对决', image: '/images/games/last-brain/06.png', portrait: true },
+  { title: '三选一强化', image: '/images/games/last-brain/07.png', portrait: true },
+  { title: '背包拼装', image: '/images/games/last-brain/08.png', portrait: true },
+  { title: '配件扩展', image: '/images/games/last-brain/09.png', portrait: true },
+  { title: '无尽模式', image: '/images/games/last-brain/10.png', portrait: true }
+]
+
+const currentLastBrainImageIndex = ref(0)
+const lastBrainThumbnailContainer = ref<HTMLElement>()
+const currentLastBrainImage = computed(() => lastBrainImages[currentLastBrainImageIndex.value])
+
+const selectLastBrainImage = (index: number) => {
+  currentLastBrainImageIndex.value = index
+  nextTick(() => scrollThumbnailIntoView(lastBrainThumbnailContainer.value, index))
+}
 
 const rebirthCellSystems = [
   '自由组合巨口、利爪、毒刺、电囊、触手与甲壳',
