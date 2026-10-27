@@ -71,10 +71,13 @@ export function useTapTapStats(games: StudioGame[]) {
     loading.value = true
     error.value = ''
     try {
-      // 先用构建期快照立刻填上正确热度，再尝试实时刷新
+      // 构建期快照（生产环境仅此来源；Vite 代理 /api/taptap 只在开发可用）
       await loadSnapshot()
       loading.value = false
-      await loadLive()
+
+      if (import.meta.env.DEV) {
+        await loadLive()
+      }
     } catch (liveError) {
       if (source.value === 'none') {
         try {
@@ -92,6 +95,7 @@ export function useTapTapStats(games: StudioGame[]) {
   }
 
   const refreshQuiet = async () => {
+    if (!import.meta.env.DEV) return
     try {
       await loadLive()
     } catch {
@@ -106,9 +110,11 @@ export function useTapTapStats(games: StudioGame[]) {
 
   onMounted(() => {
     void refresh()
-    timer = window.setInterval(() => {
-      void refreshQuiet()
-    }, 5 * 60 * 1000)
+    if (import.meta.env.DEV) {
+      timer = window.setInterval(() => {
+        void refreshQuiet()
+      }, 5 * 60 * 1000)
+    }
   })
 
   onUnmounted(() => {
