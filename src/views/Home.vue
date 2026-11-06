@@ -5,8 +5,8 @@
       <!-- 游戏Banner背景 -->
       <div class="absolute inset-0">
         <img
-          src="/images/games/last-brain/banner.png"
-          alt="人类最后一颗脑瓜游戏背景"
+          src="/images/games/clone-brawl/banner.png"
+          alt="复制人大乱斗游戏背景"
           class="w-full h-full object-cover"
         >
         <!-- 渐变遮罩 -->
@@ -38,16 +38,16 @@
             <!-- 游戏标题 -->
             <div class="space-y-3 text-center lg:text-left">
               <div class="flex items-center justify-center lg:justify-start space-x-4">
-                <div class="w-16 h-16 rounded-xl overflow-hidden bg-amber-500/20 border border-amber-300/30">
+                <div class="w-16 h-16 rounded-xl overflow-hidden bg-lime-500/20 border border-lime-300/30">
                   <img
-                    src="/images/games/last-brain/logo.png"
-                    alt="人类最后一颗脑瓜logo"
+                    src="/images/games/clone-brawl/logo.png"
+                    alt="复制人大乱斗logo"
                     class="w-full h-full object-cover"
                   >
                 </div>
                 <div>
-                  <h2 class="text-2xl sm:text-3xl lg:text-4xl font-display font-bold gradient-text">人类最后一颗脑瓜</h2>
-                  <p class="text-lg lg:text-xl text-white font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Last Brain</p>
+                  <h2 class="text-2xl sm:text-3xl lg:text-4xl font-display font-bold gradient-text">复制人大乱斗</h2>
+                  <p class="text-lg lg:text-xl text-white font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Clone Brawl</p>
                 </div>
               </div>
 
@@ -59,11 +59,11 @@
                 <!-- 多平台发布标签 -->
                 <div class="flex gap-2 flex-wrap">
                   <a
-                    :href="lastBrainTapTapUrl || undefined"
-                    :target="lastBrainTapTapUrl ? '_blank' : undefined"
-                    :rel="lastBrainTapTapUrl ? 'noopener noreferrer' : undefined"
+                    :href="cloneBrawlTapTapUrl || undefined"
+                    :target="cloneBrawlTapTapUrl ? '_blank' : undefined"
+                    :rel="cloneBrawlTapTapUrl ? 'noopener noreferrer' : undefined"
                     class="platform-mini-btn bg-blue-500"
-                    :class="{ 'pointer-events-none opacity-60': !lastBrainTapTapUrl }"
+                    :class="{ 'pointer-events-none opacity-60': !cloneBrawlTapTapUrl }"
                   >
                     <span class="text-xs">TapTap</span>
                   </a>
@@ -74,16 +74,16 @@
             <!-- 游戏描述 -->
             <div class="bg-black/60 backdrop-blur-lg border border-white/20 rounded-xl p-6 shadow-2xl">
               <p class="text-base lg:text-lg text-white leading-relaxed font-medium" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.9);">
-                末日只剩一颗脑瓜。操控机器人作战、驾驶装甲车突围，拖动旋转武器拼装背包火力，在随机路线中寻找补给、突破首领封锁！
+                卡牌构筑 × 自动战斗。从一个样本出发，复制改造打造军团，让攻击、防御、再生与死亡触发连锁反应，赢下混乱热闹的大乱斗！
               </p>
             </div>
 
             <!-- 游戏特色标签 -->
             <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <span class="px-4 py-2 bg-amber-500/20 text-amber-300 rounded-full text-sm backdrop-blur-sm border border-amber-500/30">背包拼装</span>
-              <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full text-sm backdrop-blur-sm border border-orange-500/30">末日肉鸽</span>
-              <span class="px-4 py-2 bg-red-500/20 text-red-300 rounded-full text-sm backdrop-blur-sm border border-red-500/30">尸潮突围</span>
-              <span class="px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-full text-sm backdrop-blur-sm border border-yellow-500/30">像素风</span>
+              <span class="px-4 py-2 bg-lime-500/20 text-lime-300 rounded-full text-sm backdrop-blur-sm border border-lime-500/30">卡牌构筑</span>
+              <span class="px-4 py-2 bg-emerald-500/20 text-emerald-300 rounded-full text-sm backdrop-blur-sm border border-emerald-500/30">自动战斗</span>
+              <span class="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm backdrop-blur-sm border border-green-500/30">复制军团</span>
+              <span class="px-4 py-2 bg-teal-500/20 text-teal-300 rounded-full text-sm backdrop-blur-sm border border-teal-500/30">策略肉鸽</span>
             </div>
 
             <!-- 操作按钮 -->
@@ -92,8 +92,8 @@
                 了解详情
               </RouterLink>
               <a
-                v-if="lastBrainTapTapUrl"
-                :href="lastBrainTapTapUrl"
+                v-if="cloneBrawlTapTapUrl"
+                :href="cloneBrawlTapTapUrl"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="btn-secondary text-lg px-8 py-4 shadow-xl hover:shadow-2xl"
@@ -215,7 +215,7 @@ import { hotGames, type StudioGame } from '@/data/games'
 import { useTapTapStats } from '@/composables/useTapTapStats'
 import { formatHeatCount, formatTapScore } from '@/utils/taptap'
 
-const lastBrainTapTapUrl = 'https://tap.cn/GleXc5RA'
+const cloneBrawlTapTapUrl = 'https://tap.cn/izDPeR9v'
 const { getStat, loading: statsLoading } = useTapTapStats(hotGames)
 
 const activeHotIndex = ref(2)

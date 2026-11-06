@@ -1,227 +1,247 @@
 {
-  "updatedAt": "2026-10-27T03:02:41.207Z",
-  "success": 11,
-  "total": 11,
+  "updatedAt": "2026-11-06T08:00:15.834Z",
+  "success": 12,
+  "total": 12,
   "games": {
     "766679": {
       "appId": 766679,
       "title": "小小御剑士",
       "score": 6.9,
       "reviewCount": 84,
-      "heatCount": 14301,
-      "fansCount": 11912,
+      "heatCount": 14325,
+      "fansCount": 11915,
       "reserveCount": 187,
-      "updatedAt": "2026-10-27T03:02:41.207Z"
+      "updatedAt": "2026-11-06T08:00:15.833Z"
     },
     "802340": {
       "appId": 802340,
       "title": "异界钓鱼佬",
       "score": 8.3,
-      "reviewCount": 35,
-      "heatCount": 4222,
-      "fansCount": 3325,
+      "reviewCount": 34,
+      "heatCount": 4244,
+      "fansCount": 3330,
       "reserveCount": 130,
-      "updatedAt": "2026-10-27T03:02:41.013Z"
+      "updatedAt": "2026-11-06T08:00:15.638Z"
     },
     "867574": {
       "appId": 867574,
       "title": "地球保卫计划",
       "score": 8.1,
       "reviewCount": 17,
-      "heatCount": 5341,
-      "fansCount": 4420,
+      "heatCount": 5372,
+      "fansCount": 4426,
       "reserveCount": 0,
-      "updatedAt": "2026-10-27T03:02:40.814Z"
+      "updatedAt": "2026-11-06T08:00:15.420Z"
     },
     "872257": {
       "appId": 872257,
       "title": "弑神匕首",
       "score": 9.4,
       "reviewCount": 37,
-      "heatCount": 8366,
-      "fansCount": 7047,
+      "heatCount": 8608,
+      "fansCount": 7239,
       "reserveCount": 0,
-      "updatedAt": "2026-10-27T03:02:40.599Z"
+      "updatedAt": "2026-11-06T08:00:15.225Z"
     },
     "877529": {
       "appId": 877529,
       "title": "末日喋血双雄",
       "score": 8.5,
       "reviewCount": 17,
-      "heatCount": 1527,
-      "fansCount": 1271,
+      "heatCount": 1565,
+      "fansCount": 1299,
       "reserveCount": 0,
-      "updatedAt": "2026-10-27T03:02:40.390Z"
+      "updatedAt": "2026-11-06T08:00:15.037Z"
     },
     "904067": {
       "appId": 904067,
       "title": "完美清洁公司",
       "score": 8.5,
-      "reviewCount": 56,
-      "heatCount": 95869,
-      "fansCount": 88351,
+      "reviewCount": 57,
+      "heatCount": 100672,
+      "fansCount": 92399,
       "reserveCount": 0,
-      "updatedAt": "2026-10-27T03:02:39.928Z"
+      "updatedAt": "2026-11-06T08:00:14.672Z"
     },
     "910424": {
       "appId": 910424,
       "title": "一锤子买卖",
       "score": 9,
       "reviewCount": 17,
-      "heatCount": 2082,
-      "fansCount": 1746,
+      "heatCount": 2253,
+      "fansCount": 1880,
       "reserveCount": 0,
-      "updatedAt": "2026-10-27T03:02:40.174Z"
+      "updatedAt": "2026-11-06T08:00:14.851Z"
     },
     "923121": {
       "appId": 923121,
       "title": "吃我一记脑瓜崩",
       "score": 9.1,
       "reviewCount": 8,
-      "heatCount": 924,
-      "fansCount": 874,
+      "heatCount": 943,
+      "fansCount": 879,
       "reserveCount": 2,
-      "updatedAt": "2026-10-27T03:02:39.721Z"
+      "updatedAt": "2026-11-06T08:00:14.499Z"
     },
     "942322": {
       "appId": 942322,
       "title": "我家地毯会爆金币",
       "score": 7.9,
       "reviewCount": 12,
-      "heatCount": 2742,
-      "fansCount": 2711,
+      "heatCount": 3289,
+      "fansCount": 3164,
       "reserveCount": 22,
-      "updatedAt": "2026-10-27T03:02:39.496Z"
+      "updatedAt": "2026-11-06T08:00:14.273Z"
     },
     "954572": {
       "appId": 954572,
       "title": "重生随机细胞",
-      "score": 8.5,
-      "reviewCount": 42,
-      "heatCount": 12787,
-      "fansCount": 11967,
+      "score": 8.4,
+      "reviewCount": 49,
+      "heatCount": 13923,
+      "fansCount": 12845,
       "reserveCount": 1,
-      "updatedAt": "2026-10-27T03:02:39.268Z"
+      "updatedAt": "2026-11-06T08:00:14.051Z"
+    },
+    "968597": {
+      "appId": 968597,
+      "title": "复制人大乱斗",
+      "score": 9.4,
+      "reviewCount": 6,
+      "heatCount": 171,
+      "fansCount": 287,
+      "reserveCount": 43,
+      "updatedAt": "2026-11-06T08:00:13.636Z"
     },
     "969023": {
       "appId": 969023,
       "title": "人类最后一颗脑瓜",
-      "score": 8.9,
-      "reviewCount": 13,
-      "heatCount": 2676,
-      "fansCount": 2314,
+      "score": 8.7,
+      "reviewCount": 18,
+      "heatCount": 4297,
+      "fansCount": 3619,
       "reserveCount": 0,
-      "updatedAt": "2026-10-27T03:02:39.037Z"
+      "updatedAt": "2026-11-06T08:00:13.835Z"
+    },
+    "clone-brawl": {
+      "appId": 968597,
+      "title": "复制人大乱斗",
+      "score": 9.4,
+      "reviewCount": 6,
+      "heatCount": 171,
+      "fansCount": 287,
+      "reserveCount": 43,
+      "updatedAt": "2026-11-06T08:00:13.636Z"
     },
     "last-brain": {
       "appId": 969023,
       "title": "人类最后一颗脑瓜",
-      "score": 8.9,
-      "reviewCount": 13,
-      "heatCount": 2676,
-      "fansCount": 2314,
+      "score": 8.7,
+      "reviewCount": 18,
+      "heatCount": 4297,
+      "fansCount": 3619,
       "reserveCount": 0,
-      "updatedAt": "2026-10-27T03:02:39.037Z"
+      "updatedAt": "2026-11-06T08:00:13.835Z"
     },
     "rebirth-cell": {
       "appId": 954572,
       "title": "重生随机细胞",
-      "score": 8.5,
-      "reviewCount": 42,
-      "heatCount": 12787,
-      "fansCount": 11967,
+      "score": 8.4,
+      "reviewCount": 49,
+      "heatCount": 13923,
+      "fansCount": 12845,
       "reserveCount": 1,
-      "updatedAt": "2026-10-27T03:02:39.268Z"
+      "updatedAt": "2026-11-06T08:00:14.051Z"
     },
     "flip-coin": {
       "appId": 942322,
       "title": "我家地毯会爆金币",
       "score": 7.9,
       "reviewCount": 12,
-      "heatCount": 2742,
-      "fansCount": 2711,
+      "heatCount": 3289,
+      "fansCount": 3164,
       "reserveCount": 22,
-      "updatedAt": "2026-10-27T03:02:39.496Z"
+      "updatedAt": "2026-11-06T08:00:14.273Z"
     },
     "head-flick": {
       "appId": 923121,
       "title": "吃我一记脑瓜崩",
       "score": 9.1,
       "reviewCount": 8,
-      "heatCount": 924,
-      "fansCount": 874,
+      "heatCount": 943,
+      "fansCount": 879,
       "reserveCount": 2,
-      "updatedAt": "2026-10-27T03:02:39.721Z"
+      "updatedAt": "2026-11-06T08:00:14.499Z"
     },
     "cleaning": {
       "appId": 904067,
       "title": "完美清洁公司",
       "score": 8.5,
-      "reviewCount": 56,
-      "heatCount": 95869,
-      "fansCount": 88351,
+      "reviewCount": 57,
+      "heatCount": 100672,
+      "fansCount": 92399,
       "reserveCount": 0,
-      "updatedAt": "2026-10-27T03:02:39.928Z"
+      "updatedAt": "2026-11-06T08:00:14.672Z"
     },
     "egg-smash": {
       "appId": 910424,
       "title": "一锤子买卖",
       "score": 9,
       "reviewCount": 17,
-      "heatCount": 2082,
-      "fansCount": 1746,
+      "heatCount": 2253,
+      "fansCount": 1880,
       "reserveCount": 0,
-      "updatedAt": "2026-10-27T03:02:40.174Z"
+      "updatedAt": "2026-11-06T08:00:14.851Z"
     },
     "bloodfall": {
       "appId": 877529,
       "title": "末日喋血双雄",
       "score": 8.5,
       "reviewCount": 17,
-      "heatCount": 1527,
-      "fansCount": 1271,
+      "heatCount": 1565,
+      "fansCount": 1299,
       "reserveCount": 0,
-      "updatedAt": "2026-10-27T03:02:40.390Z"
+      "updatedAt": "2026-11-06T08:00:15.037Z"
     },
     "dagger": {
       "appId": 872257,
       "title": "弑神匕首",
       "score": 9.4,
       "reviewCount": 37,
-      "heatCount": 8366,
-      "fansCount": 7047,
+      "heatCount": 8608,
+      "fansCount": 7239,
       "reserveCount": 0,
-      "updatedAt": "2026-10-27T03:02:40.599Z"
+      "updatedAt": "2026-11-06T08:00:15.225Z"
     },
     "earth-defense": {
       "appId": 867574,
       "title": "地球保卫计划",
       "score": 8.1,
       "reviewCount": 17,
-      "heatCount": 5341,
-      "fansCount": 4420,
+      "heatCount": 5372,
+      "fansCount": 4426,
       "reserveCount": 0,
-      "updatedAt": "2026-10-27T03:02:40.814Z"
+      "updatedAt": "2026-11-06T08:00:15.420Z"
     },
     "angler": {
       "appId": 802340,
       "title": "异界钓鱼佬",
       "score": 8.3,
-      "reviewCount": 35,
-      "heatCount": 4222,
-      "fansCount": 3325,
+      "reviewCount": 34,
+      "heatCount": 4244,
+      "fansCount": 3330,
       "reserveCount": 130,
-      "updatedAt": "2026-10-27T03:02:41.013Z"
+      "updatedAt": "2026-11-06T08:00:15.638Z"
     },
     "swordmaster": {
       "appId": 766679,
       "title": "小小御剑士",
       "score": 6.9,
       "reviewCount": 84,
-      "heatCount": 14301,
-      "fansCount": 11912,
+      "heatCount": 14325,
+      "fansCount": 11915,
       "reserveCount": 187,
-      "updatedAt": "2026-10-27T03:02:41.207Z"
+      "updatedAt": "2026-11-06T08:00:15.833Z"
     }
   }
 }

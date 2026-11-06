@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
 import Products from '@/views/Products.vue'
+import ProductDetail from '@/views/ProductDetail.vue'
 import About from '@/views/About.vue'
 // import Contact from '@/views/Contact.vue' // 暂时隐藏
 
@@ -14,6 +15,11 @@ const routes = [
     path: '/products',
     name: 'Products',
     component: Products,
+  },
+  {
+    path: '/products/:id',
+    name: 'ProductDetail',
+    component: ProductDetail,
   },
   {
     path: '/about',

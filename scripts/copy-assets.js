@@ -69,6 +69,16 @@ const assetMappings = [
     src: 'src/assets/images/games/last-brain',
     dest: 'public/images/games/last-brain'
   },
+  // 复制人大乱斗图片
+  {
+    src: 'src/assets/images/games/clone-brawl',
+    dest: 'public/images/games/clone-brawl'
+  },
+  // 异界钓鱼佬图片
+  {
+    src: 'src/assets/images/games/theisekaiangler',
+    dest: 'public/images/games/theisekaiangler'
+  },
 
   // 工作室Logo
   {
