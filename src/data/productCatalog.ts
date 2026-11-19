@@ -22,6 +22,35 @@ export type ProductGame = {
 /** 作品页目录：最新在前 */
 export const productCatalog: ProductGame[] = [
   {
+    id: 'water-catch',
+    title: '全民接水挑战',
+    subtitle: 'Water Catch',
+    cover: '/images/games/water-catch/logo.png',
+    url: 'https://tap.cn/FAadxdlD',
+    appId: 1002320,
+    tagline: '物理接水 · 手感挑战',
+    description:
+      '《全民接水挑战》是一款轻松又考验手感的物理接水游戏。在可爱的玩具水工坊里，面对形状各异的容器，掌握放水时机，争取多接一滴、少洒一点！经典挑战、60 秒速接、水神试炼和每日挑战四种玩法等你尝试，还有多款水体外观可供选择。挑战日榜与历史最高榜，看看谁才是真正的接水高手！',
+    systems: [
+      '掌握放水时机，在异形容器里多接少洒',
+      '经典挑战、60 秒速接、水神试炼、每日挑战',
+      '解锁多款水体外观，装点你的玩具水工坊',
+      '挑战日榜与历史最高榜，争夺接水高手'
+    ],
+    images: [
+      { title: '游戏 Banner', image: '/images/games/water-catch/banner.png', portrait: false },
+      { title: '开始菜单', image: '/images/games/water-catch/01.png', portrait: true },
+      { title: '放水接水', image: '/images/games/water-catch/02.png', portrait: true },
+      { title: '摇摆杯挑战', image: '/images/games/water-catch/03.png', portrait: true },
+      { title: '60 秒速接', image: '/images/games/water-catch/04.png', portrait: true },
+      { title: '水神试炼', image: '/images/games/water-catch/05.png', portrait: true },
+      { title: '每日挑战', image: '/images/games/water-catch/06.png', portrait: true },
+      { title: '排行榜', image: '/images/games/water-catch/07.png', portrait: true },
+      { title: '水体外观', image: '/images/games/water-catch/08.png', portrait: true }
+    ],
+    videoUrl: '/video/water-catch.mp4'
+  },
+  {
     id: 'clone-brawl',
     title: '复制人大乱斗',
     subtitle: 'Clone Brawl',

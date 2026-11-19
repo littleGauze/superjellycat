@@ -74,6 +74,12 @@ const assetMappings = [
     src: 'src/assets/images/games/clone-brawl',
     dest: 'public/images/games/clone-brawl'
   },
+  // 全民接水挑战图片
+  {
+    src: 'src/assets/images/games/water-catch',
+    dest: 'public/images/games/water-catch'
+  },
+
   // 异界钓鱼佬图片
   {
     src: 'src/assets/images/games/theisekaiangler',

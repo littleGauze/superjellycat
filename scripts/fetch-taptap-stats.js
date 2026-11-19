@@ -14,6 +14,7 @@ const TAP_XUA = encodeURIComponent(
 
 /** 与 src/data/games.ts 保持同步 */
 const games = [
+  { id: 'water-catch', appId: 1002320, title: '全民接水挑战' },
   { id: 'clone-brawl', appId: 968597, title: '复制人大乱斗' },
   { id: 'last-brain', appId: 969023, title: '人类最后一颗脑瓜' },
   { id: 'rebirth-cell', appId: 954572, title: '重生随机细胞' },
