@@ -10,7 +10,7 @@ export type StudioGame = {
   tagline?: string
 }
 
-const hotIds = ['cleaning', 'clone-brawl', 'water-catch', 'last-brain', 'rebirth-cell'] as const
+const hotIds = ['cleaning', 'water-catch', 'escape-ascent', 'clone-brawl', 'last-brain'] as const
 
 /** 首页热门游戏轮播（含 TapTap appId，用于拉取评分/热度） */
 export const hotGames: StudioGame[] = hotIds.map((id) => {
@@ -22,7 +22,7 @@ export const hotGames: StudioGame[] = hotIds.map((id) => {
     url: game.url,
     appId: game.appId,
     tagline: game.tagline,
-    hot: id === 'water-catch'
+    hot: id === 'escape-ascent'
   }
 })
 
@@ -34,5 +34,5 @@ export const allStudioGames: StudioGame[] = productCatalog.map((game) => ({
   url: game.url,
   appId: game.appId,
   tagline: game.tagline,
-  hot: game.id === 'water-catch'
+  hot: game.id === 'escape-ascent'
 }))

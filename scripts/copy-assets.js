@@ -79,6 +79,11 @@ const assetMappings = [
     src: 'src/assets/images/games/water-catch',
     dest: 'public/images/games/water-catch'
   },
+  // 逃出升天图片
+  {
+    src: 'src/assets/images/games/escape-ascent',
+    dest: 'public/images/games/escape-ascent'
+  },
 
   // 异界钓鱼佬图片
   {

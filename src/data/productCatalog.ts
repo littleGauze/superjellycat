@@ -22,6 +22,36 @@ export type ProductGame = {
 /** 作品页目录：最新在前 */
 export const productCatalog: ProductGame[] = [
   {
+    id: 'escape-ascent',
+    title: '逃出升天',
+    subtitle: 'Escape to Survival',
+    cover: '/images/games/escape-ascent/logo.png',
+    url: 'https://tap.cn/tsuHVv7R',
+    appId: 1046822,
+    tagline: '像素末日 · 撤离求生',
+    description:
+      '《逃出升天》是一款像素风末日生存动作游戏。你从医院醒来，必须穿过沦陷的街区，登上恒远大厦，赶上最后一班撤离直升机。搜刮武器、弹药和医疗物资，精打细算每一罐口粮。关门阻挡尸潮，抡起家具杀出重围，再带上忠诚的狗狗伙伴，一起寻找生路。随机路线、突发事件与角色特质，让每次出发都有新的挑战。参加每日挑战，与其他幸存者争夺最快撤离纪录！',
+    systems: [
+      '穿过沦陷街区，登上恒远大厦赶上撤离直升机',
+      '搜刮武器弹药与口粮，精打细算每一份物资',
+      '关门挡尸潮，带上狗狗伙伴杀出重围',
+      '随机路线与每日挑战，争夺最快撤离纪录'
+    ],
+    images: [
+      { title: '游戏 Banner', image: '/images/games/escape-ascent/banner.png', portrait: false },
+      { title: '开始菜单', image: '/images/games/escape-ascent/01.png', portrait: false },
+      { title: '搜刮物资', image: '/images/games/escape-ascent/02.png', portrait: false },
+      { title: '尸潮突围', image: '/images/games/escape-ascent/03.png', portrait: false },
+      { title: '室内探索', image: '/images/games/escape-ascent/04.png', portrait: false },
+      { title: '狗狗伙伴', image: '/images/games/escape-ascent/05.png', portrait: false },
+      { title: '关门防守', image: '/images/games/escape-ascent/06.png', portrait: false },
+      { title: '撤离大厦', image: '/images/games/escape-ascent/07.png', portrait: false },
+      { title: '每日挑战', image: '/images/games/escape-ascent/08.png', portrait: false },
+      { title: '幸存者特质', image: '/images/games/escape-ascent/09.png', portrait: false }
+    ],
+    videoUrl: '/video/escape-ascent.mp4'
+  },
+  {
     id: 'water-catch',
     title: '全民接水挑战',
     subtitle: 'Water Catch',
